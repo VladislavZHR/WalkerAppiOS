@@ -2,6 +2,18 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>UIAppFonts</key>
+	<array>
+		<string>SFUIText-Medium.ttf</string>
+		<string>SFUIText-Bold_0.ttf</string>
+		<string>SFUIText-BoldItalic.ttf</string>
+		<string>SFUIText-Heavy.ttf</string>
+		<string>SFUIText-HeavyItalic.ttf</string>
+		<string>SFUIText-Light.ttf</string>
+		<string>SFUIText-LightItalic.ttf</string>
+		<string>SFUIText-RegularItalic.ttf</string>
+		<string>SFUIText-Semibold.ttf</string>
+	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
@@ -15,6 +27,8 @@
 					<string>Default Configuration</string>
 					<key>UISceneDelegateClassName</key>
 					<string>$(PRODUCT_MODULE_NAME).SceneDelegate</string>
+					<key>UISceneClassName</key>
+					<string></string>
 				</dict>
 			</array>
 		</dict>

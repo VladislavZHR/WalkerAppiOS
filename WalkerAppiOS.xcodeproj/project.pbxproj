@@ -23,6 +23,16 @@
 		B22783DB2BA389EB00F45C17 /* ModuleContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22783DA2BA389EB00F45C17 /* ModuleContainer.swift */; };
 		B22783DE2BA38A1200F45C17 /* UserDefaultsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22783DD2BA38A1200F45C17 /* UserDefaultsRepository.swift */; };
 		B22783E12BA38A3200F45C17 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22783E02BA38A3200F45C17 /* Constants.swift */; };
+		B2EEC1062BA4C9E500F8849B /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = B2EEC1052BA4C9E500F8849B /* SnapKit */; };
+		B2EEC1142BA4CE4200F8849B /* SFUIText-HeavyItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B2EEC1082BA4CE4100F8849B /* SFUIText-HeavyItalic.ttf */; };
+		B2EEC1162BA4CE4200F8849B /* SFUIText-Bold_0.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B2EEC10A2BA4CE4100F8849B /* SFUIText-Bold_0.ttf */; };
+		B2EEC1182BA4CE4200F8849B /* SFUIText-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B2EEC10C2BA4CE4100F8849B /* SFUIText-BoldItalic.ttf */; };
+		B2EEC1192BA4CE4200F8849B /* SFUIText-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B2EEC10D2BA4CE4100F8849B /* SFUIText-LightItalic.ttf */; };
+		B2EEC11A2BA4CE4200F8849B /* SFUIText-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B2EEC10E2BA4CE4100F8849B /* SFUIText-Medium.ttf */; };
+		B2EEC11B2BA4CE4200F8849B /* SFUIText-Heavy.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B2EEC10F2BA4CE4100F8849B /* SFUIText-Heavy.ttf */; };
+		B2EEC11C2BA4CE4200F8849B /* SFUIText-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B2EEC1102BA4CE4100F8849B /* SFUIText-Light.ttf */; };
+		B2EEC11E2BA4CE4200F8849B /* SFUIText-RegularItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B2EEC1122BA4CE4100F8849B /* SFUIText-RegularItalic.ttf */; };
+		B2EEC11F2BA4CE4200F8849B /* SFUIText-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B2EEC1132BA4CE4200F8849B /* SFUIText-Semibold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +54,15 @@
 		B22783DA2BA389EB00F45C17 /* ModuleContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleContainer.swift; sourceTree = "<group>"; };
 		B22783DD2BA38A1200F45C17 /* UserDefaultsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsRepository.swift; sourceTree = "<group>"; };
 		B22783E02BA38A3200F45C17 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		B2EEC1082BA4CE4100F8849B /* SFUIText-HeavyItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SFUIText-HeavyItalic.ttf"; path = "../../../../../Downloads/San Francisco UI Text/SFUIText-HeavyItalic.ttf"; sourceTree = "<group>"; };
+		B2EEC10A2BA4CE4100F8849B /* SFUIText-Bold_0.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SFUIText-Bold_0.ttf"; path = "../../../../../Downloads/San Francisco UI Text/SFUIText-Bold_0.ttf"; sourceTree = "<group>"; };
+		B2EEC10C2BA4CE4100F8849B /* SFUIText-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SFUIText-BoldItalic.ttf"; path = "../../../../../Downloads/San Francisco UI Text/SFUIText-BoldItalic.ttf"; sourceTree = "<group>"; };
+		B2EEC10D2BA4CE4100F8849B /* SFUIText-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SFUIText-LightItalic.ttf"; path = "../../../../../Downloads/San Francisco UI Text/SFUIText-LightItalic.ttf"; sourceTree = "<group>"; };
+		B2EEC10E2BA4CE4100F8849B /* SFUIText-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SFUIText-Medium.ttf"; path = "../../../../../Downloads/San Francisco UI Text/SFUIText-Medium.ttf"; sourceTree = "<group>"; };
+		B2EEC10F2BA4CE4100F8849B /* SFUIText-Heavy.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SFUIText-Heavy.ttf"; path = "../../../../../Downloads/San Francisco UI Text/SFUIText-Heavy.ttf"; sourceTree = "<group>"; };
+		B2EEC1102BA4CE4100F8849B /* SFUIText-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SFUIText-Light.ttf"; path = "../../../../../Downloads/San Francisco UI Text/SFUIText-Light.ttf"; sourceTree = "<group>"; };
+		B2EEC1122BA4CE4100F8849B /* SFUIText-RegularItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SFUIText-RegularItalic.ttf"; path = "../../../../../Downloads/San Francisco UI Text/SFUIText-RegularItalic.ttf"; sourceTree = "<group>"; };
+		B2EEC1132BA4CE4200F8849B /* SFUIText-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SFUIText-Semibold.ttf"; path = "../../../../../Downloads/San Francisco UI Text/SFUIText-Semibold.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B2EEC1062BA4C9E500F8849B /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,6 +96,7 @@
 		B22783AC2BA3877C00F45C17 /* WalkerAppiOS */ = {
 			isa = PBXGroup;
 			children = (
+				B2EEC1072BA4CDBA00F8849B /* Fonts */,
 				B22783DF2BA38A2400F45C17 /* Extensions */,
 				B22783DC2BA389FA00F45C17 /* Service */,
 				B22783D72BA389B500F45C17 /* Dependencies */,
@@ -169,6 +190,22 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		B2EEC1072BA4CDBA00F8849B /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				B2EEC10A2BA4CE4100F8849B /* SFUIText-Bold_0.ttf */,
+				B2EEC10C2BA4CE4100F8849B /* SFUIText-BoldItalic.ttf */,
+				B2EEC10F2BA4CE4100F8849B /* SFUIText-Heavy.ttf */,
+				B2EEC1082BA4CE4100F8849B /* SFUIText-HeavyItalic.ttf */,
+				B2EEC1102BA4CE4100F8849B /* SFUIText-Light.ttf */,
+				B2EEC10D2BA4CE4100F8849B /* SFUIText-LightItalic.ttf */,
+				B2EEC10E2BA4CE4100F8849B /* SFUIText-Medium.ttf */,
+				B2EEC1122BA4CE4100F8849B /* SFUIText-RegularItalic.ttf */,
+				B2EEC1132BA4CE4200F8849B /* SFUIText-Semibold.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -185,6 +222,9 @@
 			dependencies = (
 			);
 			name = WalkerAppiOS;
+			packageProductDependencies = (
+				B2EEC1052BA4C9E500F8849B /* SnapKit */,
+			);
 			productName = WalkerAppiOS;
 			productReference = B22783AA2BA3877C00F45C17 /* WalkerAppiOS.app */;
 			productType = "com.apple.product-type.application";
@@ -213,6 +253,9 @@
 				Base,
 			);
 			mainGroup = B22783A12BA3877C00F45C17;
+			packageReferences = (
+				B2EEC1042BA4C9E500F8849B /* XCRemoteSwiftPackageReference "SnapKit" */,
+			);
 			productRefGroup = B22783AB2BA3877C00F45C17 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -227,7 +270,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B2EEC11C2BA4CE4200F8849B /* SFUIText-Light.ttf in Resources */,
+				B2EEC1142BA4CE4200F8849B /* SFUIText-HeavyItalic.ttf in Resources */,
 				B22783BA2BA3878300F45C17 /* LaunchScreen.storyboard in Resources */,
+				B2EEC1182BA4CE4200F8849B /* SFUIText-BoldItalic.ttf in Resources */,
+				B2EEC1192BA4CE4200F8849B /* SFUIText-LightItalic.ttf in Resources */,
+				B2EEC11F2BA4CE4200F8849B /* SFUIText-Semibold.ttf in Resources */,
+				B2EEC11E2BA4CE4200F8849B /* SFUIText-RegularItalic.ttf in Resources */,
+				B2EEC11B2BA4CE4200F8849B /* SFUIText-Heavy.ttf in Resources */,
+				B2EEC11A2BA4CE4200F8849B /* SFUIText-Medium.ttf in Resources */,
+				B2EEC1162BA4CE4200F8849B /* SFUIText-Bold_0.ttf in Resources */,
 				B22783B72BA3878300F45C17 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -410,7 +462,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = zvd.WalkerAppiOS;
+				PRODUCT_BUNDLE_IDENTIFIER = zvd.Walker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -443,7 +495,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = zvd.WalkerAppiOS;
+				PRODUCT_BUNDLE_IDENTIFIER = zvd.Walker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -477,6 +529,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B2EEC1042BA4C9E500F8849B /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.7.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B2EEC1052BA4C9E500F8849B /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B2EEC1042BA4C9E500F8849B /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = B22783A22BA3877C00F45C17 /* Project object */;
 }

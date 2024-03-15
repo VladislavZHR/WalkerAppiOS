@@ -27,11 +27,13 @@ final class AppCoordinator: AppCoordinatorProtocol {
     private func showLaunchFlow() {
         
         
-            if userDefaultsRepository.isAppLaunchedBefore {
+            if !userDefaultsRepository.isAppLaunchedBefore {
                 userDefaultsRepository.setAppLaunched()
                 showAuthFlow()
             } else {
-                showMainFlow()
+                showAuthFlow()
+
+//                showMainFlow()
             }
         
         
