@@ -4,6 +4,10 @@ enum CoordinatorType {
     case app, auth, main
 }
 
+enum CoordinatorTypeScreen: String {
+    case recover, registration, next
+}
+
 protocol Coordinator: AnyObject {
     
     var finishDelegate: CoordinatorFinishDelegate? { get }

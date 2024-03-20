@@ -3,6 +3,9 @@ import UIKit
 protocol IModuleContainer {
     func getAuthView() -> UIViewController
     func getMainView() -> UIViewController
+    func getRecoverView() -> UIViewController
+    func getRegistrationView() -> UIViewController
+    func getNextScreenFromAuth() -> UIViewController
 }
 
 final class ModuleContainer: IModuleContainer {
@@ -29,4 +32,25 @@ extension ModuleContainer {
         return MainViewController()
     }
     
+}
+
+extension ModuleContainer {
+    
+    func getRecoverView() -> UIViewController {
+        return RecoverPasswordViewController()
+    }
+    
+}
+
+extension ModuleContainer {
+    func getRegistrationView() -> UIViewController {
+        return RegistrationViewController()
+    }
+
+}
+
+extension ModuleContainer {
+    func getNextScreenFromAuth() -> UIViewController {
+        return NextScreenFromAuthViewController()
+    }
 }

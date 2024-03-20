@@ -5,12 +5,23 @@ protocol AuthCoordinatorProtocol: Coordinator {
     func start()
 }
 
+protocol TransitionScreen {
+    func didTransitionScreen(_ type: TypeScreen)
+}
+
+
+
+
+//сделать протокол который будет держать метод для отправки перееходов через типы экранов
+
 final class AuthCoordinator: AuthCoordinatorProtocol {
     
     var finishDelegate: CoordinatorFinishDelegate?
     var navigationController: UINavigationController
     var childCoordinators: [Coordinator] = []
     var type: CoordinatorType { .auth }
+    var typeScreen: CoordinatorTypeScreen?
+    //прописать типы экранов
     var dependencies: IDependencies
     
     
@@ -26,12 +37,35 @@ final class AuthCoordinator: AuthCoordinatorProtocol {
     
    private func showAuthViewController() {
        
-       let authViewController = AuthAssembly.configure(dependencies)
+       guard let authViewController = AuthAssembly.configure(dependencies) as? AuthViewController else {return}
+       authViewController.delegateTransitionScreen = self
+       navigationController.pushViewController(authViewController, animated: true)
        
-        navigationController.pushViewController(authViewController, animated: true)
+       
     }
     
+//экстеншен на протокол
+//кнопка назад
     
-
     
 }
+
+extension AuthCoordinator: TransitionScreen {
+    func didTransitionScreen(_ type: TypeScreen) {
+        
+        switch type {
+        case .recover:
+            let recoverPasswordViewController = RecoverPasswordAssembly.configure(dependencies)
+            navigationController.pushViewController(recoverPasswordViewController, animated: true)
+        case .registration:
+            let registrationViewController = RegistrationAssembly.configure(dependencies)
+            navigationController.pushViewController(registrationViewController, animated: true)
+        case .next:
+            let nextScreenFromAuth = NextScreenFromAuthAssembly.configure(dependencies)
+            navigationController.pushViewController(nextScreenFromAuth, animated: true)
+        }
+        
+    }
+
+}
+
