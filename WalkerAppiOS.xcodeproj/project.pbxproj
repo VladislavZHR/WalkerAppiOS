@@ -155,7 +155,7 @@
 		B22783CC2BA3891C00F45C17 /* Module */ = {
 			isa = PBXGroup;
 			children = (
-				B22783D22BA3897500F45C17 /* AuthViewController */,
+				B22783D22BA3897500F45C17 /* AuthFlow */,
 				B22783CD2BA3892F00F45C17 /* MainViewController */,
 			);
 			path = Module;
@@ -170,17 +170,15 @@
 			path = MainViewController;
 			sourceTree = "<group>";
 		};
-		B22783D22BA3897500F45C17 /* AuthViewController */ = {
+		B22783D22BA3897500F45C17 /* AuthFlow */ = {
 			isa = PBXGroup;
 			children = (
+				B25069002BACADF4002CD92E /* AuthViewController */,
 				B239AB222BAB7DD600DDD29E /* NextScreenFromAuth */,
 				B239AB1D2BAB7B4400DDD29E /* Registration */,
 				B28A15822BA8DC07008B15A9 /* RecoverPassword */,
-				B22783D32BA3898F00F45C17 /* AuthViewController.swift */,
-				B22783D52BA389A600F45C17 /* AuthAssembly.swift */,
-				B28A15872BA8DFCD008B15A9 /* AuthViewModel.swift */,
 			);
-			path = AuthViewController;
+			path = AuthFlow;
 			sourceTree = "<group>";
 		};
 		B22783D72BA389B500F45C17 /* Dependencies */ = {
@@ -224,6 +222,16 @@
 				B239AB252BAB7EAD00DDD29E /* NextScreenFromAuthAssembly.swift */,
 			);
 			path = NextScreenFromAuth;
+			sourceTree = "<group>";
+		};
+		B25069002BACADF4002CD92E /* AuthViewController */ = {
+			isa = PBXGroup;
+			children = (
+				B22783D32BA3898F00F45C17 /* AuthViewController.swift */,
+				B22783D52BA389A600F45C17 /* AuthAssembly.swift */,
+				B28A15872BA8DFCD008B15A9 /* AuthViewModel.swift */,
+			);
+			path = AuthViewController;
 			sourceTree = "<group>";
 		};
 		B28A15822BA8DC07008B15A9 /* RecoverPassword */ = {

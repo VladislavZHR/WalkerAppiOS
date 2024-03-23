@@ -5,7 +5,7 @@ protocol AuthCoordinatorProtocol: Coordinator {
     func start()
 }
 
-protocol TransitionScreen {
+protocol TransitionScreen: AnyObject {
     func didTransitionScreen(_ type: TypeScreen)
 }
 
