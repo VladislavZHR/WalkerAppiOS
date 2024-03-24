@@ -1,4 +1,4 @@
-import Foundation
+import UIKit
 
 enum UserDefaultsKey {
     
@@ -6,3 +6,4 @@ enum UserDefaultsKey {
     static let appLaunched = ""
     
 }
+

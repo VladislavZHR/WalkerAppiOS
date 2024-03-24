@@ -9,21 +9,21 @@ final class AuthViewController: UIViewController {
     
     weak var delegateTransitionScreen: TransitionScreen?
         
-    let baseViewImagePetApp: UIImageView = {
+    private let baseViewImagePetApp: UIImageView = {
         let baseViewImagePetApp = UIImageView()
         baseViewImagePetApp.image = UIImage(named: "BaseViewImagePetApp")
         baseViewImagePetApp.contentMode = .scaleAspectFit
         return baseViewImagePetApp
     }()
     
-    let baseSubViewImagePetApp: UIImageView = {
+    private let baseSubViewImagePetApp: UIImageView = {
         let baseSubViewImagePetApp = UIImageView()
         baseSubViewImagePetApp.image = UIImage(named: "BaseSubViewImagePetApp")
         baseSubViewImagePetApp.contentMode = .scaleAspectFit
         return baseSubViewImagePetApp
     }()
     
-    let rectangleOnBaseView: UIView = {
+    private let rectangleOnBaseView: UIView = {
         let rectangleOnBaseView = UIView()
         let imageView = UIImageView()
         imageView.image = UIImage(named: "RectangleOnBaseView")
@@ -37,7 +37,7 @@ final class AuthViewController: UIViewController {
         return rectangleOnBaseView
     }()
     
-    let enterLabel: UILabel = {
+    private let enterLabel: UILabel = {
         let enterLabel = UILabel()
         enterLabel.textColor = .rectangle106
         enterLabel.font = UIFont(name: "SFUIText-Medium", size: 22)
@@ -47,30 +47,32 @@ final class AuthViewController: UIViewController {
         return enterLabel
     }()
     
-    let textFieldFirst: UITextField = {
+    private let textFieldFirst: UITextField = {
         let textFieldFirst = UITextField()
         textFieldFirst.layer.cornerRadius = 10
-        textFieldFirst.placeholder = "E-mail"
         textFieldFirst.layer.borderColor = .init(red: 237/255, green: 237/255, blue: 240/255, alpha: 1)
         textFieldFirst.layer.borderWidth = 1
         textFieldFirst.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: textFieldFirst.frame.height))
         textFieldFirst.leftViewMode = .always
         textFieldFirst.textColor = .textFieldColorForText
+        textFieldFirst.returnKeyType = .done
         return textFieldFirst
     }()
     
-    let textFieldSecond: UITextField = {
+    private let textFieldSecond: UITextField = {
         let textFieldSecond = UITextField()
         textFieldSecond.layer.cornerRadius = 10
-        textFieldSecond.placeholder = "Пароль"
         textFieldSecond.layer.borderColor = .init(red: 237/255, green: 237/255, blue: 240/255, alpha: 1)
         textFieldSecond.layer.borderWidth = 1
         textFieldSecond.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: textFieldSecond.frame.height))
         textFieldSecond.leftViewMode = .always
+        textFieldSecond.textColor = .textFieldColorForText
+        textFieldSecond.returnKeyType = .done
+
         return textFieldSecond
     }()
     
-    let buttonNext: UIButton = {
+    private let buttonNext: UIButton = {
         let buttonNext = UIButton(type: .system)
         buttonNext.backgroundColor = .button
         buttonNext.layer.cornerRadius = 32
@@ -81,7 +83,7 @@ final class AuthViewController: UIViewController {
         return buttonNext
     }()
     
-    let recoverPasswordButton: UIButton = {
+    private let recoverPasswordButton: UIButton = {
         let recoverPasswordButton = UIButton(type: .system)
         recoverPasswordButton.setTitle("Восстановить пароль", for: .normal)
         recoverPasswordButton.setTitleColor(.colotTextButton, for: .normal)
@@ -89,7 +91,7 @@ final class AuthViewController: UIViewController {
         return recoverPasswordButton
     }()
     
-    let registrationButton: UIButton = {
+    private let registrationButton: UIButton = {
         let registrationButton = UIButton(type: .system)
         registrationButton.setTitle("Регистрация", for: .normal)
         registrationButton.setTitleColor(.colotTextButton, for: .normal)
@@ -97,11 +99,23 @@ final class AuthViewController: UIViewController {
         return registrationButton
     }()
     
-    let line: UIView = {
+    private let line: UIView = {
         let line = UIView()
         line.backgroundColor = .lineAuthclr
         line.layer.masksToBounds = true
         return line
+    }()
+    
+    private let titleLabelFirst: UILabel = {
+        let titleLabel = UILabel()
+        
+        return titleLabel
+    }()
+    
+    private let titleLabelSecond: UILabel = {
+        let titleLabel = UILabel()
+        
+        return titleLabel
     }()
 
     override func viewDidLoad() {
@@ -110,10 +124,11 @@ final class AuthViewController: UIViewController {
         addConstraintWithSnp()
         setUPRootView()
         addActionToButton()
-        addAnimation()
+        configureTTitleLabel()
+        addNotification()
     }
     
-    func addConstraintWithSnp() {
+    private func addConstraintWithSnp() {
         self.view.addSubview(baseViewImagePetApp)
         self.view.addSubview(baseSubViewImagePetApp)
         self.view.addSubview(rectangleOnBaseView)
@@ -125,6 +140,9 @@ final class AuthViewController: UIViewController {
         self.rectangleOnBaseView.addSubview(recoverPasswordButton)
         self.rectangleOnBaseView.addSubview(registrationButton)
         self.rectangleOnBaseView.addSubview(line)
+        
+        self.view.addSubview(titleLabelFirst)
+        self.view.addSubview(titleLabelSecond)
         
         baseViewImagePetApp.snp.makeConstraints {
             $0.top.equalToSuperview().offset(40)
@@ -189,6 +207,8 @@ final class AuthViewController: UIViewController {
             $0.width.equalTo(1)
         }
         
+
+        
         let gesture = UISwipeGestureRecognizer(target: self, action: #selector(swipeRectangle))
         gesture.direction = .up
         let gestureHidden = UISwipeGestureRecognizer(target: self, action: #selector(gestureHiidden))
@@ -199,13 +219,14 @@ final class AuthViewController: UIViewController {
     }
     
     @objc
-    func swipeRectangle() {
+    private func swipeRectangle() {
+        
         self.rectangleOnBaseView.snp.makeConstraints {
             $0.top.equalTo(self.view.snp.top).offset(460)
             $0.bottom.lessThanOrEqualToSuperview()
         }
         
-        UIView.animate(withDuration: 1.0) {
+        UIView.animate(withDuration: 0.8) {
             self.view.layoutIfNeeded()
         } completion: { _ in
             
@@ -213,7 +234,11 @@ final class AuthViewController: UIViewController {
         }
     }
     
-    @objc func gestureHiidden() {
+    @objc 
+    private func gestureHiidden() {
+        
+        self.view.endEditing(true)
+        
         
         self.rectangleOnBaseView.snp.remakeConstraints {
             $0.horizontalEdges.equalToSuperview()
@@ -271,7 +296,7 @@ final class AuthViewController: UIViewController {
         }
     }
     
-    func addSubRectangle() {
+    private func addSubRectangle() {
         
         enterLabel.snp.remakeConstraints {
             $0.centerX.equalToSuperview()
@@ -319,33 +344,152 @@ final class AuthViewController: UIViewController {
             $0.width.equalTo(1)
         }
         
-        UIView.animate(withDuration: 1.5) {
+        UIView.animate(withDuration: 0.9) {
             self.view.layoutIfNeeded()
         }
     }
 
-    func setUPRootView() {
+    private func setUPRootView() {
         self.view.backgroundColor = .rectangle111
     }
     
-    func addActionToButton() {
+    private func addActionToButton() {
         recoverPasswordButton.addTarget(self, action: #selector(getRecoverPassword), for: .touchUpInside)
         registrationButton.addTarget(self, action: #selector(getRegistration), for: .touchUpInside)
         buttonNext.addTarget(self, action: #selector(getNextScreen), for: .touchUpInside)
     }
     
     @objc 
-    func getRecoverPassword() {
+    private func getRecoverPassword() {
         delegateTransitionScreen?.didTransitionScreen(.recover)
     }
     
     @objc 
-    func getRegistration() {
+    private func getRegistration() {
         delegateTransitionScreen?.didTransitionScreen(.registration)
     }
     
     @objc
-    func getNextScreen() {
+    private func getNextScreen() {
         delegateTransitionScreen?.didTransitionScreen(.next)
     }
 }
+
+extension AuthViewController: UITextFieldDelegate {
+    
+    private func configureTTitleLabel() {
+        
+        textFieldFirst.delegate = self
+        textFieldSecond.delegate = self
+        
+        titleLabelFirst.text = "E-mail"
+        titleLabelFirst.textColor = .textColorPlaceholder
+        titleLabelFirst.backgroundColor = .rectalgleCLR
+        titleLabelFirst.font = UIFont(name: "SFUIText-Light", size: 17)
+        
+        titleLabelSecond.text = "Пароль"
+        titleLabelSecond.textColor = .textColorPlaceholder
+        titleLabelSecond.backgroundColor = .rectalgleCLR
+        titleLabelSecond.font = UIFont(name: "SFUIText-Light", size: 17)
+        
+        
+        
+        titleLabelFirst.snp.makeConstraints {
+            $0.left.equalTo(textFieldFirst.snp.left).offset(10)
+            $0.centerY.equalTo(textFieldFirst.snp.centerY)
+        }
+        
+        titleLabelSecond.snp.makeConstraints {
+            $0.left.equalTo(textFieldSecond.snp.left).offset(10)
+            $0.centerY.equalTo(textFieldSecond.snp.centerY)
+        }
+    }
+    
+    
+    
+        
+   func textFieldDidBeginEditing(_ textField: UITextField) {
+       
+       textField.becomeFirstResponder()
+
+        
+            if textField == textFieldFirst {
+
+                UIView.animate(withDuration: 0.1) {
+                    self.titleLabelFirst.transform = CGAffineTransform(translationX: 15, y: -textField.bounds.height/2)
+                }
+            } else if textField == textFieldSecond {
+                UIView.animate(withDuration: 0.1) {
+                    self.titleLabelSecond.transform = CGAffineTransform(translationX: 15, y: -textField.bounds.height/2)
+                }
+            }
+        
+    }
+    
+    
+    
+    
+        
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        
+        textField.resignFirstResponder()
+        
+            if textField == textFieldFirst {
+                if textField.text?.isEmpty ?? true {
+                    UIView.animate(withDuration: 0.1) {
+                        self.titleLabelFirst.transform = CGAffineTransform.identity
+                    }
+                }
+            } else if textField == textFieldSecond {
+                if textField.text?.isEmpty ?? true {
+                    UIView.animate(withDuration: 0.1) {
+                        self.titleLabelSecond.transform = CGAffineTransform.identity
+                    }
+                }
+            }
+        
+    }
+    
+    private func addNotification() {
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyHidden(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc
+    func keyShow(_ notification: Notification) {
+        
+        guard let userInfo = notification.userInfo,
+              let keyboardFrame = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else {return}
+        let keyboardHeigh = keyboardFrame.size.height
+        let labelHeigh = keyboardFrame.size.height
+        self.rectangleOnBaseView.transform = CGAffineTransform(translationX: 0, y: -keyboardHeigh)
+        self.titleLabelFirst.transform = .init(translationX: 15, y: -labelHeigh)
+        
+
+        
+        
+        UIView.animate(withDuration: 1) {
+            self.view.layoutIfNeeded()
+        }
+        
+    }
+    
+    @objc
+    func keyHidden(_ notification: Notification) {
+        
+        self.rectangleOnBaseView.transform = .identity
+        self.titleLabelFirst.transform = .identity
+
+        
+        UIView.animate(withDuration: 1) {
+            self.view.layoutIfNeeded()
+        }
+        
+    }
+    
+
+
+
+}
+

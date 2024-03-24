@@ -19,6 +19,7 @@ final class RecoverPasswordViewController: UIViewController {
         textField.placeholder = "E-mail"
         textField.layer.borderColor = .init(red: 237/255, green: 237/255, blue: 240/255, alpha: 1)
         textField.textColor = .textColorPlaceholder
+        textField.returnKeyType = .done
         textField.font = UIFont(name: "SFUIText-Light", size: 16)
         textField.font = UIFont.systemFont(ofSize: 16, weight: .medium)
 
