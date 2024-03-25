@@ -5,9 +5,15 @@ enum TypeScreen {
     case recover, registration, next
 }
 
+
+
 final class AuthViewController: UIViewController {
     
     weak var delegateTransitionScreen: TransitionScreen?
+    
+    var keyboardFrameGlobal: CGFloat?
+    
+    
         
     private let baseViewImagePetApp: UIImageView = {
         let baseViewImagePetApp = UIImageView()
@@ -126,6 +132,7 @@ final class AuthViewController: UIViewController {
         addActionToButton()
         configureTTitleLabel()
         addNotification()
+        addDispatch()
     }
     
     private func addConstraintWithSnp() {
@@ -231,6 +238,21 @@ final class AuthViewController: UIViewController {
         } completion: { _ in
             
             self.addSubRectangle()
+        }
+    }
+    
+    func addDispatch() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            self.rectangleOnBaseView.snp.makeConstraints {
+                $0.top.equalTo(self.view.snp.top).offset(460)
+                $0.bottom.lessThanOrEqualToSuperview()
+            }
+            UIView.animate(withDuration: 0.8) {
+                self.view.layoutIfNeeded()
+            } completion: { _ in
+                
+                self.addSubRectangle()
+            }
         }
     }
     
@@ -385,12 +407,12 @@ extension AuthViewController: UITextFieldDelegate {
         titleLabelFirst.text = "E-mail"
         titleLabelFirst.textColor = .textColorPlaceholder
         titleLabelFirst.backgroundColor = .rectalgleCLR
-        titleLabelFirst.font = UIFont(name: "SFUIText-Light", size: 17)
+        titleLabelFirst.font = UIFont(name: "SFUIText-Light", size: 15)
         
         titleLabelSecond.text = "Пароль"
         titleLabelSecond.textColor = .textColorPlaceholder
         titleLabelSecond.backgroundColor = .rectalgleCLR
-        titleLabelSecond.font = UIFont(name: "SFUIText-Light", size: 17)
+        titleLabelSecond.font = UIFont(name: "SFUIText-Light", size: 15)
         
         
         
@@ -407,48 +429,78 @@ extension AuthViewController: UITextFieldDelegate {
     
     
     
-        
-   func textFieldDidBeginEditing(_ textField: UITextField) {
-       
-       textField.becomeFirstResponder()
+    
 
-        
-            if textField == textFieldFirst {
 
-                UIView.animate(withDuration: 0.1) {
-                    self.titleLabelFirst.transform = CGAffineTransform(translationX: 15, y: -textField.bounds.height/2)
-                }
-            } else if textField == textFieldSecond {
-                UIView.animate(withDuration: 0.1) {
-                    self.titleLabelSecond.transform = CGAffineTransform(translationX: 15, y: -textField.bounds.height/2)
-                }
-            }
-        
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        UIView.animate(withDuration: 0.2) {
+            self.view.layoutIfNeeded()
+        }
     }
     
-    
-    
-    
-        
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        
+
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         
-            if textField == textFieldFirst {
-                if textField.text?.isEmpty ?? true {
-                    UIView.animate(withDuration: 0.1) {
-                        self.titleLabelFirst.transform = CGAffineTransform.identity
-                    }
+        if textField == textFieldFirst {
+            if let text = textField.text, !text.isEmpty {
+                textFieldFirst.text = text
+                titleLabelFirst.transform = .init(translationX: 15, y: -self.textFieldFirst.frame.height/2)
+                
+                if textFieldSecond.text?.isEmpty ?? true {
+                    titleLabelSecond.transform = .identity
+
+                } else {
+                    titleLabelSecond.transform = .init(translationX: 15, y: -self.textFieldSecond.frame.height/2)
                 }
-            } else if textField == textFieldSecond {
-                if textField.text?.isEmpty ?? true {
-                    UIView.animate(withDuration: 0.1) {
-                        self.titleLabelSecond.transform = CGAffineTransform.identity
-                    }
+            } else {
+                titleLabelFirst.transform = .identity
+                
+                if textFieldSecond.text?.isEmpty ?? true {
+                    titleLabelSecond.transform = .identity
+
+                } else {
+                    titleLabelSecond.transform = .init(translationX: 15, y: -self.textFieldSecond.frame.height/2)
                 }
             }
+        } else if textField == textFieldSecond {
+            if let text = textField.text, !text.isEmpty {
+                textFieldSecond.text = text
+                titleLabelSecond.transform = .init(translationX: 15, y: -self.textFieldSecond.frame.height/2)
+                
+                if textFieldFirst.text?.isEmpty ?? true {
+                    titleLabelFirst.transform = .identity
+
+                } else {
+                    titleLabelFirst.transform = .init(translationX: 15, y: -self.textFieldFirst.frame.height/2)
+                }
+            } else {
+                titleLabelSecond.transform = .identity
+                if textFieldFirst.text?.isEmpty ?? true {
+                    titleLabelFirst.transform = .identity
+
+                } else {
+                    titleLabelFirst.transform = .init(translationX: 15, y: -self.textFieldFirst.frame.height/2)
+                }            }
+        }
         
+        return true
     }
+
+    
+    
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        
+        
+
+    }
+    
+    
+    
+    
+    
     
     private func addNotification() {
         
@@ -456,40 +508,44 @@ extension AuthViewController: UITextFieldDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(keyHidden(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
+
+    
+    
+    
     @objc
     func keyShow(_ notification: Notification) {
-        
+   
         guard let userInfo = notification.userInfo,
-              let keyboardFrame = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else {return}
-        let keyboardHeigh = keyboardFrame.size.height
-        let labelHeigh = keyboardFrame.size.height
-        self.rectangleOnBaseView.transform = CGAffineTransform(translationX: 0, y: -keyboardHeigh)
-        self.titleLabelFirst.transform = .init(translationX: 15, y: -labelHeigh)
+              let keyboardFrame = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else { return }
+        let keyboardHeight = keyboardFrame.size.height
+        keyboardFrameGlobal = keyboardHeight
         
-
+        guard let firstHeigh = keyboardFrameGlobal else {return}
+        let KeyfirstHeigh = firstHeigh + textFieldFirst.frame.height/2
         
-        
-        UIView.animate(withDuration: 1) {
-            self.view.layoutIfNeeded()
+        UIView.animate(withDuration: 0.2) {
+            self.rectangleOnBaseView.transform = CGAffineTransform(translationX: 0, y: -keyboardHeight)
+            self.titleLabelFirst.transform = CGAffineTransform(translationX: 15, y: -KeyfirstHeigh)
+            self.titleLabelSecond.transform = CGAffineTransform(translationX: 15, y: -KeyfirstHeigh)
+            
+            
         }
-        
     }
     
     @objc
     func keyHidden(_ notification: Notification) {
-        
-        self.rectangleOnBaseView.transform = .identity
-        self.titleLabelFirst.transform = .identity
 
-        
-        UIView.animate(withDuration: 1) {
-            self.view.layoutIfNeeded()
+        UIView.animate(withDuration: 0.2) {
+            self.rectangleOnBaseView.transform = .identity
+            self.titleLabelFirst.transform = .identity
+            self.titleLabelSecond.transform = .identity
         }
-        
     }
-    
-
-
-
 }
+
+
+
+    
+    
+    
 
