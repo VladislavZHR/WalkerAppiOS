@@ -5,16 +5,12 @@ enum TypeScreen {
     case recover, registration, next
 }
 
-
-
 final class AuthViewController: UIViewController {
     
     weak var delegateTransitionScreen: TransitionScreen?
-    
     var keyboardFrameGlobal: CGFloat?
+    var authViewModel = AuthViewModel()
     
-    
-        
     private let baseViewImagePetApp: UIImageView = {
         let baseViewImagePetApp = UIImageView()
         baseViewImagePetApp.image = UIImage(named: "BaseViewImagePetApp")
@@ -74,6 +70,7 @@ final class AuthViewController: UIViewController {
         textFieldSecond.leftViewMode = .always
         textFieldSecond.textColor = .textFieldColorForText
         textFieldSecond.returnKeyType = .done
+        textFieldSecond.isSecureTextEntry = true
 
         return textFieldSecond
     }()
@@ -133,6 +130,7 @@ final class AuthViewController: UIViewController {
         configureTTitleLabel()
         addNotification()
         addDispatch()
+        changeColorTextField()
     }
     
     private func addConstraintWithSnp() {
@@ -214,8 +212,6 @@ final class AuthViewController: UIViewController {
             $0.width.equalTo(1)
         }
         
-
-        
         let gesture = UISwipeGestureRecognizer(target: self, action: #selector(swipeRectangle))
         gesture.direction = .up
         let gestureHidden = UISwipeGestureRecognizer(target: self, action: #selector(gestureHiidden))
@@ -250,7 +246,6 @@ final class AuthViewController: UIViewController {
             UIView.animate(withDuration: 0.8) {
                 self.view.layoutIfNeeded()
             } completion: { _ in
-                
                 self.addSubRectangle()
             }
         }
@@ -258,10 +253,7 @@ final class AuthViewController: UIViewController {
     
     @objc 
     private func gestureHiidden() {
-        
         self.view.endEditing(true)
-        
-        
         self.rectangleOnBaseView.snp.remakeConstraints {
             $0.horizontalEdges.equalToSuperview()
             $0.top.equalTo(self.view.snp.bottom).offset(-150)
@@ -319,7 +311,6 @@ final class AuthViewController: UIViewController {
     }
     
     private func addSubRectangle() {
-        
         enterLabel.snp.remakeConstraints {
             $0.centerX.equalToSuperview()
             $0.top.equalTo(rectangleOnBaseView.snp.top).inset(45.5)
@@ -390,10 +381,18 @@ final class AuthViewController: UIViewController {
     private func getRegistration() {
         delegateTransitionScreen?.didTransitionScreen(.registration)
     }
-    
-    @objc
-    private func getNextScreen() {
-        delegateTransitionScreen?.didTransitionScreen(.next)
+        
+    @objc private func getNextScreen() {
+
+        if let email = textFieldFirst.text, let password = textFieldSecond.text {
+            if !email.isEmpty && !password.isEmpty {
+                authViewModel.checkEnterData(email, password)
+                return
+            } else {
+                authViewModel.checkEnterData(nil, nil)
+
+            }
+        }
     }
 }
 
@@ -414,8 +413,6 @@ extension AuthViewController: UITextFieldDelegate {
         titleLabelSecond.backgroundColor = .rectalgleCLR
         titleLabelSecond.font = UIFont(name: "SFUIText-Light", size: 15)
         
-        
-        
         titleLabelFirst.snp.makeConstraints {
             $0.left.equalTo(textFieldFirst.snp.left).offset(10)
             $0.centerY.equalTo(textFieldFirst.snp.centerY)
@@ -427,30 +424,26 @@ extension AuthViewController: UITextFieldDelegate {
         }
     }
     
-    
-    
-    
-
-
     func textFieldDidChangeSelection(_ textField: UITextField) {
         UIView.animate(withDuration: 0.2) {
             self.view.layoutIfNeeded()
         }
     }
     
-
-
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
-        
+        changeColorTextField()
+
         if textField == textFieldFirst {
             if let text = textField.text, !text.isEmpty {
                 textFieldFirst.text = text
+                
                 titleLabelFirst.transform = .init(translationX: 15, y: -self.textFieldFirst.frame.height/2)
+                authViewModel.checkEnterData(text, "")
                 
                 if textFieldSecond.text?.isEmpty ?? true {
                     titleLabelSecond.transform = .identity
-
+                    
                 } else {
                     titleLabelSecond.transform = .init(translationX: 15, y: -self.textFieldSecond.frame.height/2)
                 }
@@ -459,7 +452,7 @@ extension AuthViewController: UITextFieldDelegate {
                 
                 if textFieldSecond.text?.isEmpty ?? true {
                     titleLabelSecond.transform = .identity
-
+                    
                 } else {
                     titleLabelSecond.transform = .init(translationX: 15, y: -self.textFieldSecond.frame.height/2)
                 }
@@ -471,7 +464,7 @@ extension AuthViewController: UITextFieldDelegate {
                 
                 if textFieldFirst.text?.isEmpty ?? true {
                     titleLabelFirst.transform = .identity
-
+                    
                 } else {
                     titleLabelFirst.transform = .init(translationX: 15, y: -self.textFieldFirst.frame.height/2)
                 }
@@ -479,28 +472,14 @@ extension AuthViewController: UITextFieldDelegate {
                 titleLabelSecond.transform = .identity
                 if textFieldFirst.text?.isEmpty ?? true {
                     titleLabelFirst.transform = .identity
-
+                    
                 } else {
                     titleLabelFirst.transform = .init(translationX: 15, y: -self.textFieldFirst.frame.height/2)
                 }            }
         }
-        
+
         return true
     }
-
-    
-    
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        
-        
-
-    }
-    
-    
-    
-    
-    
     
     private func addNotification() {
         
@@ -508,13 +487,9 @@ extension AuthViewController: UITextFieldDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(keyHidden(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
-
-    
-    
-    
     @objc
     func keyShow(_ notification: Notification) {
-   
+        
         guard let userInfo = notification.userInfo,
               let keyboardFrame = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else { return }
         let keyboardHeight = keyboardFrame.size.height
@@ -527,18 +502,50 @@ extension AuthViewController: UITextFieldDelegate {
             self.rectangleOnBaseView.transform = CGAffineTransform(translationX: 0, y: -keyboardHeight)
             self.titleLabelFirst.transform = CGAffineTransform(translationX: 15, y: -KeyfirstHeigh)
             self.titleLabelSecond.transform = CGAffineTransform(translationX: 15, y: -KeyfirstHeigh)
-            
-            
         }
     }
     
     @objc
     func keyHidden(_ notification: Notification) {
-
+        
         UIView.animate(withDuration: 0.2) {
             self.rectangleOnBaseView.transform = .identity
             self.titleLabelFirst.transform = .identity
             self.titleLabelSecond.transform = .identity
+        }
+    }
+    
+    private func shakeTextFields(_ textFields: UITextField) {
+        let animation = CABasicAnimation(keyPath: "position")
+        animation.duration = 0.07
+        animation.repeatCount = 4
+        animation.autoreverses = true
+        animation.fromValue = NSValue(cgPoint: CGPoint(x: textFields.center.x - 15, y: textFields.center.y))
+        animation.toValue = NSValue(cgPoint: CGPoint(x: textFields.center.x + 15, y: textFields.center.y))
+        
+        textFields.layer.add(animation, forKey: "position")
+    }
+    
+    private func changeColorTextField() {
+        authViewModel.onSucces = {
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                self.delegateTransitionScreen?.didTransitionScreen(.next)
+                self.textFieldFirst.text = nil
+                self.textFieldSecond.text = nil
+                self.textFieldFirst.layer.borderColor = .init(red: 237/255, green: 237/255, blue: 240/255, alpha: 1)
+                self.textFieldSecond.layer.borderColor = .init(red: 237/255, green: 237/255, blue: 240/255, alpha: 1)
+            }
+        }
+        
+        authViewModel.onError = { [weak self] in
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                self?.textFieldFirst.layer.borderColor = .init(red: 255/255, green: 0, blue: 0, alpha: 0.8)
+                self?.textFieldSecond.layer.borderColor = .init(red: 255/255, green: 0, blue: 0, alpha: 0.8)
+                self?.shakeTextFields(self?.textFieldFirst ?? UITextField())
+                self?.shakeTextFields(self?.textFieldSecond ?? UITextField())
+            }
         }
     }
 }

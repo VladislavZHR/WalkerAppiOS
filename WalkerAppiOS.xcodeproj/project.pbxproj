@@ -27,9 +27,11 @@
 		B239AB212BAB7B7500DDD29E /* RegistrationAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = B239AB202BAB7B7500DDD29E /* RegistrationAssembly.swift */; };
 		B239AB242BAB7E1E00DDD29E /* NextScreenFromAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B239AB232BAB7E1E00DDD29E /* NextScreenFromAuthViewController.swift */; };
 		B239AB262BAB7EAD00DDD29E /* NextScreenFromAuthAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = B239AB252BAB7EAD00DDD29E /* NextScreenFromAuthAssembly.swift */; };
+		B25791FD2BB34061005F628D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B25791FC2BB34061005F628D /* User.swift */; };
+		B25791FF2BB34112005F628D /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B25791FE2BB34112005F628D /* AuthViewModel.swift */; };
+		B25792012BB34223005F628D /* Dynamic.swift in Sources */ = {isa = PBXBuildFile; fileRef = B25792002BB34223005F628D /* Dynamic.swift */; };
 		B28A15842BA8DC23008B15A9 /* RecoverPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B28A15832BA8DC23008B15A9 /* RecoverPasswordViewController.swift */; };
 		B28A15862BA8DC61008B15A9 /* RecoverPasswordAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = B28A15852BA8DC61008B15A9 /* RecoverPasswordAssembly.swift */; };
-		B28A15882BA8DFCD008B15A9 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B28A15872BA8DFCD008B15A9 /* AuthViewModel.swift */; };
 		B2EEC1062BA4C9E500F8849B /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = B2EEC1052BA4C9E500F8849B /* SnapKit */; };
 		B2EEC1142BA4CE4200F8849B /* SFUIText-HeavyItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B2EEC1082BA4CE4100F8849B /* SFUIText-HeavyItalic.ttf */; };
 		B2EEC1162BA4CE4200F8849B /* SFUIText-Bold_0.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B2EEC10A2BA4CE4100F8849B /* SFUIText-Bold_0.ttf */; };
@@ -65,9 +67,11 @@
 		B239AB202BAB7B7500DDD29E /* RegistrationAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationAssembly.swift; sourceTree = "<group>"; };
 		B239AB232BAB7E1E00DDD29E /* NextScreenFromAuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextScreenFromAuthViewController.swift; sourceTree = "<group>"; };
 		B239AB252BAB7EAD00DDD29E /* NextScreenFromAuthAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextScreenFromAuthAssembly.swift; sourceTree = "<group>"; };
+		B25791FC2BB34061005F628D /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		B25791FE2BB34112005F628D /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
+		B25792002BB34223005F628D /* Dynamic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dynamic.swift; sourceTree = "<group>"; };
 		B28A15832BA8DC23008B15A9 /* RecoverPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoverPasswordViewController.swift; sourceTree = "<group>"; };
 		B28A15852BA8DC61008B15A9 /* RecoverPasswordAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoverPasswordAssembly.swift; sourceTree = "<group>"; };
-		B28A15872BA8DFCD008B15A9 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		B2EEC1082BA4CE4100F8849B /* SFUIText-HeavyItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SFUIText-HeavyItalic.ttf"; path = "../../../../../Downloads/San Francisco UI Text/SFUIText-HeavyItalic.ttf"; sourceTree = "<group>"; };
 		B2EEC10A2BA4CE4100F8849B /* SFUIText-Bold_0.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SFUIText-Bold_0.ttf"; path = "../../../../../Downloads/San Francisco UI Text/SFUIText-Bold_0.ttf"; sourceTree = "<group>"; };
 		B2EEC10C2BA4CE4100F8849B /* SFUIText-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SFUIText-BoldItalic.ttf"; path = "../../../../../Downloads/San Francisco UI Text/SFUIText-BoldItalic.ttf"; sourceTree = "<group>"; };
@@ -227,11 +231,37 @@
 		B25069002BACADF4002CD92E /* AuthViewController */ = {
 			isa = PBXGroup;
 			children = (
-				B22783D32BA3898F00F45C17 /* AuthViewController.swift */,
-				B22783D52BA389A600F45C17 /* AuthAssembly.swift */,
-				B28A15872BA8DFCD008B15A9 /* AuthViewModel.swift */,
+				B25791FB2BB34019005F628D /* ViewModels */,
+				B25791FA2BB3400F005F628D /* Views */,
+				B25791F92BB34008005F628D /* Models */,
 			);
 			path = AuthViewController;
+			sourceTree = "<group>";
+		};
+		B25791F92BB34008005F628D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B25791FC2BB34061005F628D /* User.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		B25791FA2BB3400F005F628D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				B22783D32BA3898F00F45C17 /* AuthViewController.swift */,
+				B22783D52BA389A600F45C17 /* AuthAssembly.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		B25791FB2BB34019005F628D /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				B25791FE2BB34112005F628D /* AuthViewModel.swift */,
+				B25792002BB34223005F628D /* Dynamic.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		B28A15822BA8DC07008B15A9 /* RecoverPassword */ = {
@@ -352,17 +382,19 @@
 				B239AB212BAB7B7500DDD29E /* RegistrationAssembly.swift in Sources */,
 				B22783D12BA3896800F45C17 /* MainAssembly.swift in Sources */,
 				B22783CB2BA3890D00F45C17 /* MainCoordinator.swift in Sources */,
-				B28A15882BA8DFCD008B15A9 /* AuthViewModel.swift in Sources */,
 				B22783C72BA388C900F45C17 /* AppCoordinator.swift in Sources */,
+				B25791FD2BB34061005F628D /* User.swift in Sources */,
 				B22783AE2BA3877D00F45C17 /* AppDelegate.swift in Sources */,
 				B22783D92BA389D000F45C17 /* Dependencies.swift in Sources */,
 				B239AB262BAB7EAD00DDD29E /* NextScreenFromAuthAssembly.swift in Sources */,
 				B22783C92BA388F300F45C17 /* AuthCoordinator.swift in Sources */,
 				B239AB1F2BAB7B6500DDD29E /* RegistrationViewController.swift in Sources */,
 				B22783D42BA3898F00F45C17 /* AuthViewController.swift in Sources */,
+				B25791FF2BB34112005F628D /* AuthViewModel.swift in Sources */,
 				B22783DB2BA389EB00F45C17 /* ModuleContainer.swift in Sources */,
 				B239AB242BAB7E1E00DDD29E /* NextScreenFromAuthViewController.swift in Sources */,
 				B22783E12BA38A3200F45C17 /* Constants.swift in Sources */,
+				B25792012BB34223005F628D /* Dynamic.swift in Sources */,
 				B22783B02BA3877D00F45C17 /* SceneDelegate.swift in Sources */,
 				B22783D62BA389A600F45C17 /* AuthAssembly.swift in Sources */,
 			);
