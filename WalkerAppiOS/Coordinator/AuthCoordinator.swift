@@ -37,8 +37,10 @@ final class AuthCoordinator: AuthCoordinatorProtocol {
     
    private func showAuthViewController() {
        
-       guard let authViewController = AuthAssembly.configure(dependencies) as? AuthViewController else {return}
-       authViewController.delegateTransitionScreen = self
+       guard let authViewController = AuthAssembly.configure(dependencies) as? AuthorizationViewController else {return}
+       
+       let rectangleWithButton = RectangleSubViewBaseViewAuth()
+       rectangleWithButton.delegateTransitionScreen = self
        navigationController.pushViewController(authViewController, animated: true)
        
        

@@ -21,7 +21,7 @@ final class ModuleContainer: IModuleContainer {
 extension ModuleContainer {
     
     func getAuthView() -> UIViewController {
-        return AuthViewController()
+        return AuthorizationViewController()
     }
 
 }

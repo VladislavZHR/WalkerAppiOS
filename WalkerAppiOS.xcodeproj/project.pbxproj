@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B2004DF62BB7482100C4ECC4 /* AuthorizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2004DF52BB7482100C4ECC4 /* AuthorizationViewController.swift */; };
+		B2004DF82BB74C7F00C4ECC4 /* RectangleSubViewBaseViewAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2004DF72BB74C7F00C4ECC4 /* RectangleSubViewBaseViewAuth.swift */; };
+		B2085B332BB60318002B12DE /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2085B322BB60318002B12DE /* CustomTextField.swift */; };
 		B22783AE2BA3877D00F45C17 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22783AD2BA3877D00F45C17 /* AppDelegate.swift */; };
 		B22783B02BA3877D00F45C17 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22783AF2BA3877D00F45C17 /* SceneDelegate.swift */; };
 		B22783B72BA3878300F45C17 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B22783B62BA3878300F45C17 /* Assets.xcassets */; };
@@ -45,6 +48,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B2004DF52BB7482100C4ECC4 /* AuthorizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationViewController.swift; sourceTree = "<group>"; };
+		B2004DF72BB74C7F00C4ECC4 /* RectangleSubViewBaseViewAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RectangleSubViewBaseViewAuth.swift; sourceTree = "<group>"; };
+		B2085B322BB60318002B12DE /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		B22783AA2BA3877C00F45C17 /* WalkerAppiOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WalkerAppiOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B22783AD2BA3877D00F45C17 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B22783AF2BA3877D00F45C17 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -95,6 +101,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B2085B312BB6026C002B12DE /* CustomElements */ = {
+			isa = PBXGroup;
+			children = (
+				B2085B322BB60318002B12DE /* CustomTextField.swift */,
+			);
+			path = CustomElements;
+			sourceTree = "<group>";
+		};
 		B22783A12BA3877C00F45C17 = {
 			isa = PBXGroup;
 			children = (
@@ -114,6 +128,7 @@
 		B22783AC2BA3877C00F45C17 /* WalkerAppiOS */ = {
 			isa = PBXGroup;
 			children = (
+				B2085B312BB6026C002B12DE /* CustomElements */,
 				B2EEC1072BA4CDBA00F8849B /* Fonts */,
 				B22783DF2BA38A2400F45C17 /* Extensions */,
 				B22783DC2BA389FA00F45C17 /* Service */,
@@ -251,6 +266,8 @@
 			children = (
 				B22783D32BA3898F00F45C17 /* AuthViewController.swift */,
 				B22783D52BA389A600F45C17 /* AuthAssembly.swift */,
+				B2004DF52BB7482100C4ECC4 /* AuthorizationViewController.swift */,
+				B2004DF72BB74C7F00C4ECC4 /* RectangleSubViewBaseViewAuth.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -374,6 +391,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B2085B332BB60318002B12DE /* CustomTextField.swift in Sources */,
 				B22783DE2BA38A1200F45C17 /* UserDefaultsRepository.swift in Sources */,
 				B28A15862BA8DC61008B15A9 /* RecoverPasswordAssembly.swift in Sources */,
 				B22783CF2BA3895000F45C17 /* MainViewController.swift in Sources */,
@@ -386,11 +404,13 @@
 				B25791FD2BB34061005F628D /* User.swift in Sources */,
 				B22783AE2BA3877D00F45C17 /* AppDelegate.swift in Sources */,
 				B22783D92BA389D000F45C17 /* Dependencies.swift in Sources */,
+				B2004DF82BB74C7F00C4ECC4 /* RectangleSubViewBaseViewAuth.swift in Sources */,
 				B239AB262BAB7EAD00DDD29E /* NextScreenFromAuthAssembly.swift in Sources */,
 				B22783C92BA388F300F45C17 /* AuthCoordinator.swift in Sources */,
 				B239AB1F2BAB7B6500DDD29E /* RegistrationViewController.swift in Sources */,
 				B22783D42BA3898F00F45C17 /* AuthViewController.swift in Sources */,
 				B25791FF2BB34112005F628D /* AuthViewModel.swift in Sources */,
+				B2004DF62BB7482100C4ECC4 /* AuthorizationViewController.swift in Sources */,
 				B22783DB2BA389EB00F45C17 /* ModuleContainer.swift in Sources */,
 				B239AB242BAB7E1E00DDD29E /* NextScreenFromAuthViewController.swift in Sources */,
 				B22783E12BA38A3200F45C17 /* Constants.swift in Sources */,

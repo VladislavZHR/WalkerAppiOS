@@ -1,10 +1,6 @@
 import UIKit
 import SnapKit
 
-enum TypeScreen {
-    case recover, registration, next
-}
-
 final class AuthViewController: UIViewController {
     
     weak var delegateTransitionScreen: TransitionScreen?
@@ -58,6 +54,7 @@ final class AuthViewController: UIViewController {
         textFieldFirst.leftViewMode = .always
         textFieldFirst.textColor = .textFieldColorForText
         textFieldFirst.returnKeyType = .done
+        textFieldFirst.textContentType = .emailAddress
         return textFieldFirst
     }()
     
@@ -70,19 +67,20 @@ final class AuthViewController: UIViewController {
         textFieldSecond.leftViewMode = .always
         textFieldSecond.textColor = .textFieldColorForText
         textFieldSecond.returnKeyType = .done
-        textFieldSecond.isSecureTextEntry = true
+        
 
         return textFieldSecond
     }()
     
     private let buttonNext: UIButton = {
         let buttonNext = UIButton(type: .system)
-        buttonNext.backgroundColor = .button
+        buttonNext.backgroundColor = .systemGray
         buttonNext.layer.cornerRadius = 32
         buttonNext.setTitle("Далее", for: .normal)
         buttonNext.titleLabel?.textAlignment = .left
         buttonNext.setTitleColor(.white, for: .normal)
         buttonNext.titleLabel?.font = UIFont(name: "SFUIText-Medium", size: 18)
+        buttonNext.isEnabled = false
         return buttonNext
     }()
     
@@ -120,17 +118,50 @@ final class AuthViewController: UIViewController {
         
         return titleLabel
     }()
+    
+    private let incorrectLogin: UILabel = {
+        let incorrectLabel = UILabel()
+        incorrectLabel.text = "введите корректный e-mail"
+        incorrectLabel.textColor = .init(red: 255/255, green: 0, blue: 0, alpha: 0.7)
+        incorrectLabel.textAlignment = .center
+        incorrectLabel.font = UIFont(name: "SFUIText-Light", size: 12)
+        
+        return incorrectLabel
+    }()
+    
+    private let incorrectPassword: UILabel = {
+        let incorrectPassword = UILabel()
+        incorrectPassword.text = "минимум 8 символов"
+        incorrectPassword.textColor = .init(red: 255/255, green: 0, blue: 0, alpha: 0.7)
+        incorrectPassword.textAlignment = .center
+        incorrectPassword.font = UIFont(name: "SFUIText-Light", size: 12)
+
+        
+        return incorrectPassword
+    }()
+    
+    private let toggleEye: UIButton = {
+        let toggleEye = UIButton()
+        toggleEye.setImage(UIImage(named: "closeEye"), for: .normal)
+        toggleEye.addTarget(self, action: #selector(secureEyeForPassword), for: .touchUpInside)
+        toggleEye.isEnabled = true
+        toggleEye.contentMode = .scaleAspectFit
+        
+        
+        return toggleEye
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         addConstraintWithSnp()
-        setUPRootView()
         addActionToButton()
         configureTTitleLabel()
         addNotification()
         addDispatch()
         changeColorTextField()
+        resetCheckLabel()
+        secureEyeForPassword()
     }
     
     private func addConstraintWithSnp() {
@@ -145,6 +176,10 @@ final class AuthViewController: UIViewController {
         self.rectangleOnBaseView.addSubview(recoverPasswordButton)
         self.rectangleOnBaseView.addSubview(registrationButton)
         self.rectangleOnBaseView.addSubview(line)
+        self.rectangleOnBaseView.addSubview(incorrectLogin)
+        self.rectangleOnBaseView.addSubview(incorrectPassword)
+        self.textFieldSecond.addSubview(toggleEye)
+
         
         self.view.addSubview(titleLabelFirst)
         self.view.addSubview(titleLabelSecond)
@@ -212,6 +247,18 @@ final class AuthViewController: UIViewController {
             $0.width.equalTo(1)
         }
         
+        incorrectLogin.snp.makeConstraints {
+            $0.top.equalTo(self.textFieldFirst.snp.bottom).offset(1)
+            $0.horizontalEdges.equalToSuperview().inset(20)
+        }
+        
+        incorrectPassword.snp.makeConstraints {
+            $0.top.equalTo(self.textFieldSecond.snp.bottom).offset(1)
+            $0.horizontalEdges.equalToSuperview().inset(20)
+        }
+        
+        self.toggleEye.frame = CGRect(x: self.textFieldSecond.frame.width + 300, y:self.textFieldSecond.frame.minY + 15, width: 30, height: 30)
+        
         let gesture = UISwipeGestureRecognizer(target: self, action: #selector(swipeRectangle))
         gesture.direction = .up
         let gestureHidden = UISwipeGestureRecognizer(target: self, action: #selector(gestureHiidden))
@@ -223,7 +270,9 @@ final class AuthViewController: UIViewController {
     
     @objc
     private func swipeRectangle() {
-        
+        returnBasicSettings()
+
+
         self.rectangleOnBaseView.snp.makeConstraints {
             $0.top.equalTo(self.view.snp.top).offset(460)
             $0.bottom.lessThanOrEqualToSuperview()
@@ -238,6 +287,7 @@ final class AuthViewController: UIViewController {
     }
     
     func addDispatch() {
+
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             self.rectangleOnBaseView.snp.makeConstraints {
                 $0.top.equalTo(self.view.snp.top).offset(460)
@@ -253,7 +303,24 @@ final class AuthViewController: UIViewController {
     
     @objc 
     private func gestureHiidden() {
-        self.view.endEditing(true)
+        self.resetCheckLabel()
+//        textFieldFirst.resignFirstResponder()
+//        textFieldSecond.resignFirstResponder()
+//        textFieldFirst.text = nil
+//        textFieldSecond.text = nil
+//        titleLabelFirst.transform = .identity
+//        titleLabelSecond.transform = .identity
+//        incorrectLogin.isHidden = true
+//        incorrectPassword.isHidden = true
+//        textFieldFirst.layer.borderColor = .init(red: 237/255, green: 237/255, blue: 240/255, alpha: 1)
+//        textFieldSecond.layer.borderColor = .init(red: 237/255, green: 237/255, blue: 240/255, alpha: 1)
+//        titleLabelFirst.textColor = .textColorPlaceholder
+//        titleLabelSecond.textColor = .textColorPlaceholder
+        returnBasicSettings()
+
+
+
+        
         self.rectangleOnBaseView.snp.remakeConstraints {
             $0.horizontalEdges.equalToSuperview()
             $0.top.equalTo(self.view.snp.bottom).offset(-150)
@@ -311,6 +378,8 @@ final class AuthViewController: UIViewController {
     }
     
     private func addSubRectangle() {
+        toggleEye.setImage(UIImage(named: "closeEye"), for: .normal)
+
         enterLabel.snp.remakeConstraints {
             $0.centerX.equalToSuperview()
             $0.top.equalTo(rectangleOnBaseView.snp.top).inset(45.5)
@@ -362,9 +431,9 @@ final class AuthViewController: UIViewController {
         }
     }
 
-    private func setUPRootView() {
-        self.view.backgroundColor = .rectangle111
-    }
+//    private func setUPRootView() {
+//        self.view.backgroundColor = .rectangle111
+//    }
     
     private func addActionToButton() {
         recoverPasswordButton.addTarget(self, action: #selector(getRecoverPassword), for: .touchUpInside)
@@ -430,9 +499,17 @@ extension AuthViewController: UITextFieldDelegate {
         }
     }
     
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        
+    }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         changeColorTextField()
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            self.checkForValidForm()
+        }
 
         if textField == textFieldFirst {
             if let text = textField.text, !text.isEmpty {
@@ -440,6 +517,8 @@ extension AuthViewController: UITextFieldDelegate {
                 
                 titleLabelFirst.transform = .init(translationX: 15, y: -self.textFieldFirst.frame.height/2)
                 authViewModel.checkEnterData(text, "")
+                
+                //добавить текстфилд и лейбл в стек
                 
                 if textFieldSecond.text?.isEmpty ?? true {
                     titleLabelSecond.transform = .identity
@@ -508,6 +587,11 @@ extension AuthViewController: UITextFieldDelegate {
     @objc
     func keyHidden(_ notification: Notification) {
         
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.checkDataFromTextFieldLogin()
+            self.checkDataFromTextFieldPassword()
+        }
+        
         UIView.animate(withDuration: 0.2) {
             self.rectangleOnBaseView.transform = .identity
             self.titleLabelFirst.transform = .identity
@@ -526,15 +610,29 @@ extension AuthViewController: UITextFieldDelegate {
         textFields.layer.add(animation, forKey: "position")
     }
     
+    private func shakeLabel(_ label: UILabel) {
+        let animation = CABasicAnimation(keyPath: "position")
+        animation.duration = 0.07
+        animation.repeatCount = 4
+        animation.autoreverses = true
+        animation.fromValue = NSValue(cgPoint: CGPoint(x: label.center.x - 15, y: label.center.y))
+        animation.toValue = NSValue(cgPoint: CGPoint(x: label.center.x + 15, y: label.center.y))
+        
+        label.layer.add(animation, forKey: "position")
+    }
+    
     private func changeColorTextField() {
         authViewModel.onSucces = {
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                 self.delegateTransitionScreen?.didTransitionScreen(.next)
+                self.resetCheckLabel()
                 self.textFieldFirst.text = nil
                 self.textFieldSecond.text = nil
                 self.textFieldFirst.layer.borderColor = .init(red: 237/255, green: 237/255, blue: 240/255, alpha: 1)
                 self.textFieldSecond.layer.borderColor = .init(red: 237/255, green: 237/255, blue: 240/255, alpha: 1)
+                self.titleLabelFirst.textColor = .textColorPlaceholder
+                self.titleLabelSecond.textColor = .textColorPlaceholder
             }
         }
         
@@ -543,10 +641,127 @@ extension AuthViewController: UITextFieldDelegate {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                 self?.textFieldFirst.layer.borderColor = .init(red: 255/255, green: 0, blue: 0, alpha: 0.8)
                 self?.textFieldSecond.layer.borderColor = .init(red: 255/255, green: 0, blue: 0, alpha: 0.8)
+                self?.textFieldFirst.textColor = .init(red: 255/255, green: 0, blue: 0, alpha: 0.8)
+                self?.textFieldSecond.textColor = .init(red: 255/255, green: 0, blue: 0, alpha: 0.8)
+                self?.titleLabelFirst.textColor = .init(red: 255/255, green: 0, blue: 0, alpha: 0.8)
+                self?.titleLabelSecond.textColor = .init(red: 255/255, green: 0, blue: 0, alpha: 0.8)
                 self?.shakeTextFields(self?.textFieldFirst ?? UITextField())
                 self?.shakeTextFields(self?.textFieldSecond ?? UITextField())
+                self?.shakeLabel(self?.titleLabelFirst ?? UILabel())
+                self?.shakeLabel(self?.titleLabelSecond ?? UILabel())
             }
         }
+    }
+    
+    private func resetCheckLabel() {
+        self.incorrectLogin.isHidden = true
+        self.incorrectPassword.isHidden = true
+    }
+    
+    private func checkDataFromTextFieldLogin() {
+        
+        if let email = self.textFieldFirst.text {
+            if let correct = returnIncorrectEmail(email) {
+                self.incorrectLogin.isHidden = false
+            } else {
+                self.incorrectLogin.isHidden = true
+            }
+        }
+    }
+    
+    private func returnIncorrectEmail(_ value: String) -> String? {
+        
+        let regularExpression = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+        let predicate = NSPredicate(format: "SELF MATCHES %@", regularExpression)
+        if !predicate.evaluate(with: value) {
+            return "Incorrect"
+        } else {
+            return nil
+        }
+    }
+    
+    private func checkDataFromTextFieldPassword() {
+        
+        if let password = self.textFieldSecond.text {
+            if let correct = returnIncorretPassword(password) {
+                self.incorrectPassword.isHidden = false
+            } else {
+                self.incorrectPassword.isHidden = true
+            }
+        }
+        
+    }
+    
+    private func returnIncorretPassword(_ value: String) -> String? {
+        
+        if value.count < 8 {
+            return "more symbol"
+        }
+        
+        if containsNumber(value) {
+            return "not contains numb"
+        }
+        
+        if containsUpperCaseLetter(value) {
+            return "not containc upperCase letter"
+        }
+        
+        if containsLowerCaseLetter(value) {
+            return "not contains lowerCase letter"
+        }
+        
+        return nil
+        
+    }
+    
+    private func containsNumber(_ value: String) -> Bool {
+        let regularExpression = ".*[0-9]+.*"
+        let predicate = NSPredicate(format: "SELF MATCHES %@", regularExpression)
+        return !predicate.evaluate(with: value)
+    }
+    
+    private func containsUpperCaseLetter(_ value: String) -> Bool {
+       let regularExpression = ".*[A-Z]+.*"
+       let predicate = NSPredicate(format: "SELF MATCHES %@", regularExpression)
+        return !predicate.evaluate(with: value)
+    }
+    
+    private func containsLowerCaseLetter(_ value: String) -> Bool {
+       let regularExpression = ".*[a-z]+.*"
+       let predicate = NSPredicate(format: "SELF MATCHES %@", regularExpression)
+        return !predicate.evaluate(with: value)
+    }
+    
+    private func checkForValidForm() {
+        if self.incorrectLogin.isHidden && incorrectPassword.isHidden {
+            self.buttonNext.isEnabled = true
+            self.buttonNext.backgroundColor = .button
+        } else {
+            self.buttonNext.isEnabled = false
+            self.buttonNext.backgroundColor = .systemGray
+        }
+    }
+    
+    @objc func secureEyeForPassword() {
+        self.textFieldSecond.isSecureTextEntry.toggle()
+        
+        let imageName = textFieldSecond.isSecureTextEntry ? "closeEye" : "eye"
+        self.toggleEye.setImage(UIImage(named: imageName), for: .normal)
+    }
+    
+    private func returnBasicSettings() {
+        textFieldFirst.resignFirstResponder()
+        textFieldSecond.resignFirstResponder()
+        textFieldFirst.text = nil
+        textFieldSecond.text = nil
+        titleLabelFirst.transform = .identity
+        titleLabelSecond.transform = .identity
+        incorrectLogin.isHidden = true
+        incorrectPassword.isHidden = true
+        textFieldFirst.layer.borderColor = .init(red: 237/255, green: 237/255, blue: 240/255, alpha: 1)
+        textFieldSecond.layer.borderColor = .init(red: 237/255, green: 237/255, blue: 240/255, alpha: 1)
+        titleLabelFirst.textColor = .textColorPlaceholder
+        titleLabelSecond.textColor = .textColorPlaceholder
     }
 }
 
