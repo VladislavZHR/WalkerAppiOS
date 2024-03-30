@@ -3,7 +3,9 @@ import SnapKit
 
 final class CustomTextField: UIView {
     
-    private let textField: UITextField = {
+    var checkEmail: (()->())?
+    
+     let textField: UITextField = {
         let textField = UITextField()
         
         textField.autocapitalizationType = .none
@@ -69,6 +71,7 @@ extension CustomTextField: UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        checkEmail?()
         self.textField.resignFirstResponder()
         
         return true

@@ -37,6 +37,7 @@ final class AuthorizationViewController: UIViewController {
         
         self.view.addSubview(baseViewImagePetApp)
         self.view.addSubview(baseSubViewImagePetApp)
+        self.view.addSubview(rectangleOnBaseView)
         
         baseViewImagePetApp.snp.makeConstraints {
             $0.top.equalToSuperview().offset(40)

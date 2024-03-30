@@ -21,7 +21,6 @@ final class AuthCoordinator: AuthCoordinatorProtocol {
     var childCoordinators: [Coordinator] = []
     var type: CoordinatorType { .auth }
     var typeScreen: CoordinatorTypeScreen?
-    //прописать типы экранов
     var dependencies: IDependencies
     
     
@@ -39,17 +38,11 @@ final class AuthCoordinator: AuthCoordinatorProtocol {
        
        guard let authViewController = AuthAssembly.configure(dependencies) as? AuthorizationViewController else {return}
        
-       let rectangleWithButton = RectangleSubViewBaseViewAuth()
-       rectangleWithButton.delegateTransitionScreen = self
+       authViewController.rectangleOnBaseView.delegateTransitionScreen = self
        navigationController.pushViewController(authViewController, animated: true)
        
        
     }
-    
-//экстеншен на протокол
-//кнопка назад
-    
-    
 }
 
 extension AuthCoordinator: TransitionScreen {

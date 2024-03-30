@@ -23,9 +23,9 @@ final class RectangleSubViewBaseViewAuth: UIView {
     private let stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
-        stackView.spacing = 20
-        stackView.alignment = .center
         
+        stackView.spacing = 15
+        stackView.alignment = .center
         return stackView
     }()
     
@@ -59,7 +59,7 @@ final class RectangleSubViewBaseViewAuth: UIView {
         buttonNext.titleLabel?.textAlignment = .left
         buttonNext.setTitleColor(.white, for: .normal)
         buttonNext.titleLabel?.font = UIFont(name: "SFUIText-Medium", size: 18)
-        buttonNext.isEnabled = true
+        buttonNext.isEnabled = false
         return buttonNext
     }()
     
@@ -67,7 +67,7 @@ final class RectangleSubViewBaseViewAuth: UIView {
         let recoverPasswordButton = UIButton(type: .system)
         recoverPasswordButton.setTitle("Восстановить пароль", for: .normal)
         recoverPasswordButton.setTitleColor(.colotTextButton, for: .normal)
-        recoverPasswordButton.titleLabel?.font = UIFont(name: "SFUIText-Medium", size: 12)
+        recoverPasswordButton.titleLabel?.font = UIFont(name: "SFUIText-Light", size: 12)
         return recoverPasswordButton
     }()
     
@@ -75,7 +75,7 @@ final class RectangleSubViewBaseViewAuth: UIView {
         let registrationButton = UIButton(type: .system)
         registrationButton.setTitle("Регистрация", for: .normal)
         registrationButton.setTitleColor(.colotTextButton, for: .normal)
-        registrationButton.titleLabel?.font = UIFont(name: "SFUIText-Medium", size: 12)
+        registrationButton.titleLabel?.font = UIFont(name: "SFUIText-Light", size: 12)
         return registrationButton
     }()
     
@@ -86,9 +86,20 @@ final class RectangleSubViewBaseViewAuth: UIView {
         return line
     }()
     
+    private let incorrectLogin: UILabel = {
+        let incorrectLogin = UILabel()
+        incorrectLogin.text = "Введите корректный e-mail"
+        incorrectLogin.textColor = .red
+        incorrectLogin.font = UIFont(name: "SFUIText-Light", size: 10)
+        incorrectLogin.isHidden = true
+        
+        return incorrectLogin
+    }()
+        
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()
+
     }
     
     required init?(coder: NSCoder) {
@@ -105,12 +116,19 @@ final class RectangleSubViewBaseViewAuth: UIView {
         self.addSubview(registrationButton)
         self.addSubview(recoverPasswordButton)
         self.addSubview(line)
+        
 
         self.stackView.addArrangedSubview(loginTextField)
+        self.stackView.addArrangedSubview(incorrectLogin)
         self.stackView.addArrangedSubview(passwordTextField)
         
         addConstraints()
         addActionToButton()
+        addEnabledForNextButton()
+        
+        self.loginTextField.checkEmail = { [weak self] in
+            self?.addCheckoutEmailInCorrect()
+        }
         
     }
     
@@ -123,8 +141,7 @@ final class RectangleSubViewBaseViewAuth: UIView {
         
         self.stackView.snp.makeConstraints {
             $0.horizontalEdges.equalToSuperview()
-            $0.height.equalTo(150)
-            $0.centerY.equalToSuperview()
+            $0.top.equalToSuperview().offset(104.5)
         }
         
         self.enterLabel.snp.remakeConstraints {
@@ -144,8 +161,12 @@ final class RectangleSubViewBaseViewAuth: UIView {
             $0.height.equalTo(60)
         }
         
+        self.incorrectLogin.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+        }
+        
         self.buttonNext.snp.remakeConstraints {
-            $0.top.equalToSuperview().offset(269.5)
+            $0.top.equalTo(passwordTextField.snp.bottom).offset(25)
             $0.height.equalTo(60)
             $0.horizontalEdges.equalToSuperview().inset(20)
         }
@@ -160,15 +181,46 @@ final class RectangleSubViewBaseViewAuth: UIView {
         self.registrationButton.snp.remakeConstraints {
             $0.height.equalTo(18)
             $0.width.equalTo(78)
-            $0.left.equalToSuperview().offset(264)
+            $0.left.equalTo(recoverPasswordButton.snp.right).offset(88)
             $0.bottom.equalToSuperview().offset(-20)
         }
         
         self.line.snp.remakeConstraints {
-            $0.horizontalEdges.equalToSuperview().inset(207)
+            $0.left.equalTo(recoverPasswordButton.snp.right).offset(43.5)
+            $0.right.equalTo(registrationButton.snp.left).offset(-43.5)
             $0.bottom.equalToSuperview().offset(-20)
             $0.height.equalTo(18)
             $0.width.equalTo(1)
+        }
+    }
+    
+    private func addEnabledForNextButton() {
+        if incorrectLogin.isHidden {
+            self.buttonNext.isEnabled = true
+            self.buttonNext.backgroundColor = .button
+        }
+    }
+    
+    
+    
+    private func addCheckoutEmailInCorrect() {
+        if let text = self.loginTextField.textField.text {
+            if let correct = returnIncorrectEmail(text) {
+                self.incorrectLogin.isHidden = false
+            } else {
+                self.incorrectLogin.isHidden = true
+            }
+        }
+    }
+    
+    private func returnIncorrectEmail(_ value: String) -> String? {
+        
+        let regularExpression = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+        let predicate = NSPredicate(format: "SELF MATCHES %@", regularExpression)
+        if !predicate.evaluate(with: value) {
+            return "Incorrect"
+        } else {
+            return nil
         }
     }
     
