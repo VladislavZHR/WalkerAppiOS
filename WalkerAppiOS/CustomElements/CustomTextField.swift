@@ -16,8 +16,9 @@ final class CustomTextField: UIView {
         textField.textColor = .textFieldColorForText
         textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: textField.frame.height))
         textField.leftViewMode = .always
-        textField.font = UIFont(name: "SFUIText-Light", size: 20)
+        textField.font = UIFont(name: "SFUIText-Medium", size: 16)
         textField.returnKeyType = .done
+
         
         return textField
     }()
@@ -27,7 +28,7 @@ final class CustomTextField: UIView {
         labelPlaceholder.textAlignment = .center
         labelPlaceholder.textColor = .textColorPlaceholder
         labelPlaceholder.backgroundColor = .rectalgleCLR
-        labelPlaceholder.font = UIFont(name: "SFUIText-Light", size: 15)
+        labelPlaceholder.font = UIFont(name: "SFUIText-Medium", size: 12)
         
         return labelPlaceholder
     }()
@@ -61,20 +62,46 @@ final class CustomTextField: UIView {
             $0.left.equalToSuperview().offset(10)
             $0.centerY.equalTo(self.textField.snp.centerY)
         }
+        
     }
 }
 
 extension CustomTextField: UITextFieldDelegate {
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
+        addTransformLabel()
         self.textField.becomeFirstResponder()
     }
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    func textFieldDidEndEditing(_ textField: UITextField) {
         checkEmail?()
+        addBackTransformLabel()
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.textField.resignFirstResponder()
         
         return true
     }
     
+    private func addTransformLabel() {
+
+        self.labelPlaceHolder.snp.updateConstraints {
+            $0.left.equalToSuperview().offset(2)
+            $0.centerY.equalToSuperview().offset(-15)
+        }
+        
+        self.labelPlaceHolder.transform = .init(scaleX: 0.6, y: 0.6)
+        
+
+        
+    }
+    
+    private func addBackTransformLabel() {
+        self.labelPlaceHolder.transform = .identity
+        self.labelPlaceHolder.snp.updateConstraints {
+            $0.left.equalToSuperview().offset(10)
+            $0.centerY.equalTo(self.textField.snp.centerY)
+        }
+    }
 }

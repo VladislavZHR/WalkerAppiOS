@@ -31,6 +31,7 @@ final class AuthorizationViewController: UIViewController {
         addConsttraints()
         addAnimateForRectangleOnBaseView()
         addNotification()
+        addGesture()
     }
     
     private func addConsttraints() {
@@ -69,6 +70,32 @@ final class AuthorizationViewController: UIViewController {
             } completion: { _ in
                 
             }
+        }
+    }
+    
+    private func addGesture() {
+        
+        let gestureShow = UISwipeGestureRecognizer(target: self, action: #selector(showRectanlge))
+        gestureShow.direction = .up
+        let gestureHide = UISwipeGestureRecognizer(target: self, action: #selector(hideRectangle))
+        gestureHide.direction = .down
+        
+        self.rectangleOnBaseView.addGestureRecognizer(gestureShow)
+        self.rectangleOnBaseView.addGestureRecognizer(gestureHide)
+        
+    }
+    
+    @objc func showRectanlge() {
+        
+        UIView.animate(withDuration: 1) {
+            self.rectangleOnBaseView.transform = .identity
+        }
+    }
+    
+    @objc func hideRectangle() {
+        
+        UIView.animate(withDuration: 1) {
+            self.rectangleOnBaseView.transform = .init(translationX: 0, y: 300)
         }
     }
 }

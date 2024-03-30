@@ -4,6 +4,7 @@ import SnapKit
 final class RectangleSubViewBaseViewAuth: UIView {
     
     weak var delegateTransitionScreen: TransitionScreen?
+    var authViewModel = AuthViewModel()
     
     private let rectangleOnBaseView: UIView = {
         let rectangleOnBaseView = UIView()
@@ -23,7 +24,6 @@ final class RectangleSubViewBaseViewAuth: UIView {
     private let stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
-        
         stackView.spacing = 15
         stackView.alignment = .center
         return stackView
@@ -67,7 +67,7 @@ final class RectangleSubViewBaseViewAuth: UIView {
         let recoverPasswordButton = UIButton(type: .system)
         recoverPasswordButton.setTitle("Восстановить пароль", for: .normal)
         recoverPasswordButton.setTitleColor(.colotTextButton, for: .normal)
-        recoverPasswordButton.titleLabel?.font = UIFont(name: "SFUIText-Light", size: 12)
+        recoverPasswordButton.titleLabel?.font = UIFont(name: "SFUIText-Medium", size: 12)
         return recoverPasswordButton
     }()
     
@@ -75,7 +75,7 @@ final class RectangleSubViewBaseViewAuth: UIView {
         let registrationButton = UIButton(type: .system)
         registrationButton.setTitle("Регистрация", for: .normal)
         registrationButton.setTitleColor(.colotTextButton, for: .normal)
-        registrationButton.titleLabel?.font = UIFont(name: "SFUIText-Light", size: 12)
+        registrationButton.titleLabel?.font = UIFont(name: "SFUIText-Medium", size: 12)
         return registrationButton
     }()
     
@@ -89,7 +89,7 @@ final class RectangleSubViewBaseViewAuth: UIView {
     private let incorrectLogin: UILabel = {
         let incorrectLogin = UILabel()
         incorrectLogin.text = "Введите корректный e-mail"
-        incorrectLogin.textColor = .red
+        incorrectLogin.textColor = .init(red: 255/255, green: 0, blue: 0, alpha: 0.75)
         incorrectLogin.font = UIFont(name: "SFUIText-Light", size: 10)
         incorrectLogin.isHidden = true
         
@@ -124,7 +124,7 @@ final class RectangleSubViewBaseViewAuth: UIView {
         
         addConstraints()
         addActionToButton()
-        addEnabledForNextButton()
+        configureWithCombile()
         
         self.loginTextField.checkEmail = { [weak self] in
             self?.addCheckoutEmailInCorrect()
@@ -194,23 +194,20 @@ final class RectangleSubViewBaseViewAuth: UIView {
         }
     }
     
-    private func addEnabledForNextButton() {
-        if incorrectLogin.isHidden {
-            self.buttonNext.isEnabled = true
-            self.buttonNext.backgroundColor = .button
-        }
-    }
-    
-    
-    
+
     private func addCheckoutEmailInCorrect() {
-        if let text = self.loginTextField.textField.text {
-            if let correct = returnIncorrectEmail(text) {
-                self.incorrectLogin.isHidden = false
-            } else {
-                self.incorrectLogin.isHidden = true
+       
+            if let text = self.loginTextField.textField.text {
+                if let correct = self.returnIncorrectEmail(text) {
+                    self.incorrectLogin.isHidden = false
+                    self.buttonNext.backgroundColor = .systemGray
+                    self.buttonNext.isEnabled = false
+                } else {
+                    self.incorrectLogin.isHidden = true
+                    self.buttonNext.backgroundColor = .button
+                    self.buttonNext.isEnabled = true
+                }
             }
-        }
     }
     
     private func returnIncorrectEmail(_ value: String) -> String? {
@@ -242,6 +239,11 @@ final class RectangleSubViewBaseViewAuth: UIView {
         
     @objc private func getNextScreen() {
         delegateTransitionScreen?.didTransitionScreen(.next)
+    }
+    
+    private func configureWithCombile() {
+        self.buttonNext.isEnabled = !self.authViewModel.canSubmit
+        
     }
 }
 
