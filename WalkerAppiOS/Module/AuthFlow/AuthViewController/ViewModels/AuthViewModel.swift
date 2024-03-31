@@ -7,7 +7,7 @@ final class AuthViewModel: ObservableObject {
     var passwordSubject = CurrentValueSubject<String, Never>("")
     
     
-    @Published var canSubmit = true
+    @Published var canSubmit = false
     
     @Published private var isValidLogin = false
     @Published private var isValidPassword = false
@@ -21,7 +21,6 @@ final class AuthViewModel: ObservableObject {
             .sink {
                 print(Thread.current)
                 self.canSubmit = $0
-                print(self.canSubmit)
             }
             .store(in: &cancellables)
         emailIsValid
@@ -34,7 +33,7 @@ final class AuthViewModel: ObservableObject {
     
     private var emailIsValid: AnyPublisher<Bool, Never> {
         emailSubject
-            .debounce(for: 0.5, scheduler: RunLoop.main)
+//            .debounce(for: 0.5, scheduler: RunLoop.main)
             .map { email in
                 self.emailPreicate.evaluate(with: email)
             }
@@ -43,7 +42,7 @@ final class AuthViewModel: ObservableObject {
     
     private var passwordIsValid: AnyPublisher<Bool, Never> {
         passwordSubject
-            .debounce(for: 0.5, scheduler: RunLoop.main)
+//            .debounce(for: 0.5, scheduler: RunLoop.main)
             .map { password in
                 password.count >= 8
             }
@@ -52,7 +51,7 @@ final class AuthViewModel: ObservableObject {
     
     private var canAuthPublisher: AnyPublisher<Bool, Never> {
         Publishers.CombineLatest(emailIsValid, passwordIsValid)
-            .debounce(for: 0.5, scheduler: RunLoop.main)
+//            .debounce(for: 0.5, scheduler: RunLoop.main)
             .map { (email, password) in
                 (email && password)
             }

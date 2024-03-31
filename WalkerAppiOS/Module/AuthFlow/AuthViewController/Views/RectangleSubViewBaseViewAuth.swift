@@ -92,7 +92,6 @@ final class RectangleSubViewBaseViewAuth: UIView {
     
     private let incorrectLogin: UILabel = {
         let incorrectLogin = UILabel()
-        incorrectLogin.text = "Error"
         incorrectLogin.textColor = .init(red: 255/255, green: 0, blue: 0, alpha: 0.75)
         incorrectLogin.font = UIFont(name: "SFUIText-Light", size: 10)
         incorrectLogin.isHidden = true
@@ -102,7 +101,6 @@ final class RectangleSubViewBaseViewAuth: UIView {
     
     private let incorrectPassword: UILabel = {
         let incorrectPassword = UILabel()
-        incorrectPassword.text = "Error"
         incorrectPassword.textColor = .init(red: 255/255, green: 0, blue: 0, alpha: 0.75)
         incorrectPassword.font = UIFont(name: "SFUIText-Light", size: 10)
         incorrectPassword.isHidden = true
@@ -166,8 +164,8 @@ final class RectangleSubViewBaseViewAuth: UIView {
     
     
     private func configureWithCombine() {
-        print(authViewModel.canSubmit, 1)
         loginTextField.sendToSubject = { [weak self] value in
+                
             self?.authViewModel.emailSubject
                 .send(value)
         }
@@ -178,7 +176,6 @@ final class RectangleSubViewBaseViewAuth: UIView {
         }
         
         authViewModel.$canSubmit
-            .receive(on: DispatchQueue.main)
             .sink { [weak self] canSubmit in
                 canSubmit ? self?.isCanSubmit() : self?.isNotCanSubmit()
             }
@@ -196,6 +193,8 @@ final class RectangleSubViewBaseViewAuth: UIView {
         self.buttonNext.isEnabled = false
         self.incorrectLogin.isHidden = false
         self.incorrectPassword.isHidden = false
+        self.incorrectLogin.text = "Error"
+        self.incorrectPassword.text = "Error"
 
     }
 }
