@@ -3,4 +3,118 @@
    uuid = "ADEE0A67-E998-4C59-8EF8-668453EC3085"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "566C549D-F713-4593-B266-1362D8C77B70"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WalkerAppiOS/Module/AuthFlow/AuthViewController/ViewModels/AuthViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "10"
+            endingLineNumber = "10"
+            landmarkName = "AuthViewModel"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E6EC2A05-5F2A-4BEE-9974-A7AF8775466B"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WalkerAppiOS/Module/AuthFlow/AuthViewController/Views/RectangleSubViewBaseViewAuth.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "115"
+            endingLineNumber = "115"
+            landmarkName = "init(frame:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "E6EC2A05-5F2A-4BEE-9974-A7AF8775466B - 24d6d168cb6e0fcd"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "WalkerAppiOS.RectangleSubViewBaseViewAuth.init(frame: __C.CGRect) -&gt; WalkerAppiOS.RectangleSubViewBaseViewAuth"
+                  moduleName = "WalkerAppiOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/newuser/Desktop/WalkerAppiOS/WalkerAppiOS/WalkerAppiOS/Module/AuthFlow/AuthViewController/Views/RectangleSubViewBaseViewAuth.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "116"
+                  endingLineNumber = "116"
+                  offsetFromSymbolStart = "1236">
+               </Location>
+               <Location
+                  uuid = "E6EC2A05-5F2A-4BEE-9974-A7AF8775466B - 24d6d168cb6e0fea"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "WalkerAppiOS.RectangleSubViewBaseViewAuth.init(frame: __C.CGRect) -&gt; WalkerAppiOS.RectangleSubViewBaseViewAuth"
+                  moduleName = "WalkerAppiOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/newuser/Desktop/WalkerAppiOS/WalkerAppiOS/WalkerAppiOS/Module/AuthFlow/AuthViewController/Views/RectangleSubViewBaseViewAuth.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "115"
+                  endingLineNumber = "115"
+                  offsetFromSymbolStart = "1183">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "72D67567-7C30-467A-9CBE-3C93AAD4D7DD"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "WalkerAppiOS/Module/AuthFlow/AuthViewController/ViewModels/AuthViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "23"
+            endingLineNumber = "23"
+            landmarkName = "init()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "72D67567-7C30-467A-9CBE-3C93AAD4D7DD - cbc783435f23a5eb"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Bool) -&gt; () in WalkerAppiOS.AuthViewModel.init() -&gt; WalkerAppiOS.AuthViewModel"
+                  moduleName = "WalkerAppiOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/newuser/Desktop/WalkerAppiOS/WalkerAppiOS/WalkerAppiOS/Module/AuthFlow/AuthViewController/ViewModels/AuthViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "23"
+                  endingLineNumber = "23"
+                  offsetFromSymbolStart = "84">
+               </Location>
+               <Location
+                  uuid = "72D67567-7C30-467A-9CBE-3C93AAD4D7DD - cbc783435f23a5eb"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Bool) -&gt; () in WalkerAppiOS.AuthViewModel.init() -&gt; WalkerAppiOS.AuthViewModel"
+                  moduleName = "WalkerAppiOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/newuser/Desktop/WalkerAppiOS/WalkerAppiOS/WalkerAppiOS/Module/AuthFlow/AuthViewController/ViewModels/AuthViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "23"
+                  endingLineNumber = "23"
+                  offsetFromSymbolStart = "32">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

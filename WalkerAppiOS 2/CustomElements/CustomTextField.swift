@@ -3,7 +3,7 @@ import SnapKit
 
 final class CustomTextField: UIView {
     
-    var sendToSubject: ((String)->())?
+    var checkEmail: (()->())?
     
      let textField: UITextField = {
         let textField = UITextField()
@@ -78,7 +78,7 @@ extension CustomTextField: UITextFieldDelegate {
     }
     
     func textFieldDidChangeSelection(_ textField: UITextField) {
-        sendToSubject?(textField.text ?? "")
+        checkEmail?()
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

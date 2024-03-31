@@ -7,7 +7,6 @@ final class RectangleSubViewBaseViewAuth: UIView {
     private var cancellables = Set<AnyCancellable>()
 
     weak var delegateTransitionScreen: TransitionScreen?
-    
     var authViewModel = AuthViewModel()
     
     private let rectangleOnBaseView: UIView = {
@@ -92,7 +91,6 @@ final class RectangleSubViewBaseViewAuth: UIView {
     
     private let incorrectLogin: UILabel = {
         let incorrectLogin = UILabel()
-        incorrectLogin.text = "Error"
         incorrectLogin.textColor = .init(red: 255/255, green: 0, blue: 0, alpha: 0.75)
         incorrectLogin.font = UIFont(name: "SFUIText-Light", size: 10)
         incorrectLogin.isHidden = true
@@ -101,22 +99,17 @@ final class RectangleSubViewBaseViewAuth: UIView {
     }()
     
     private let incorrectPassword: UILabel = {
-        let incorrectPassword = UILabel()
-        incorrectPassword.text = "Error"
-        incorrectPassword.textColor = .init(red: 255/255, green: 0, blue: 0, alpha: 0.75)
-        incorrectPassword.font = UIFont(name: "SFUIText-Light", size: 10)
-        incorrectPassword.isHidden = true
+        let incorrectLogin = UILabel()
+        incorrectLogin.textColor = .init(red: 255/255, green: 0, blue: 0, alpha: 0.75)
+        incorrectLogin.font = UIFont(name: "SFUIText-Light", size: 10)
+        incorrectLogin.isHidden = true
         
-        return incorrectPassword
+        return incorrectLogin
     }()
         
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()
-        
-        self.incorrectLogin.isHidden = true
-        self.incorrectPassword.isHidden = true
-        
 
     }
     
@@ -126,6 +119,7 @@ final class RectangleSubViewBaseViewAuth: UIView {
     
     private func configure() {
         
+        
         self.addSubview(rectangleOnBaseView)
         self.addSubview(stackView)
         self.addSubview(enterLabel)
@@ -134,6 +128,7 @@ final class RectangleSubViewBaseViewAuth: UIView {
         self.addSubview(recoverPasswordButton)
         self.addSubview(line)
         
+
         self.stackView.addArrangedSubview(loginTextField)
         self.stackView.addArrangedSubview(incorrectLogin)
         self.stackView.addArrangedSubview(passwordTextField)
@@ -141,66 +136,18 @@ final class RectangleSubViewBaseViewAuth: UIView {
         
         addConstraints()
         addActionToButton()
-        configureWithCombine()
-    }
-    
-    private func addActionToButton() {
-        recoverPasswordButton.addTarget(self, action: #selector(getRecoverPassword), for: .touchUpInside)
-        registrationButton.addTarget(self, action: #selector(getRegistration), for: .touchUpInside)
-        buttonNext.addTarget(self, action: #selector(getNextScreen), for: .touchUpInside)
-    }
-    
-    @objc
-    private func getRecoverPassword() {
-        delegateTransitionScreen?.didTransitionScreen(.recover)
-    }
-    
-    @objc
-    private func getRegistration() {
-        delegateTransitionScreen?.didTransitionScreen(.registration)
-    }
         
-    @objc private func getNextScreen() {
-        delegateTransitionScreen?.didTransitionScreen(.next)
-    }
-    
-    
-    private func configureWithCombine() {
-        print(authViewModel.canSubmit, 1)
-        loginTextField.sendToSubject = { [weak self] value in
-            self?.authViewModel.emailSubject
-                .send(value)
+        
+        loginTextField.checkEmail = {
+            self.observeTextFields()
+            self.configureWithCombine()
         }
         
-        passwordTextField.sendToSubject = { [weak self] value in
-            self?.authViewModel.passwordSubject
-                .send(value)
+        passwordTextField.checkEmail = {
+            self.observeTextFields()
+            self.configureWithCombine()
         }
-        
-        authViewModel.$canSubmit
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] canSubmit in
-                canSubmit ? self?.isCanSubmit() : self?.isNotCanSubmit()
-            }
-            .store(in: &cancellables)
     }
-
-    private func isCanSubmit() {
-        self.buttonNext.isEnabled = true
-        self.incorrectLogin.isHidden = true
-        self.incorrectPassword.isHidden = true
-        self.buttonNext.backgroundColor = .button
-    }
-    
-    private func isNotCanSubmit() {
-        self.buttonNext.isEnabled = false
-        self.incorrectLogin.isHidden = false
-        self.incorrectPassword.isHidden = false
-
-    }
-}
-
-extension RectangleSubViewBaseViewAuth {
     
     private func addConstraints() {
         
@@ -270,5 +217,69 @@ extension RectangleSubViewBaseViewAuth {
             $0.width.equalTo(1)
         }
     }
+        
+    private func addActionToButton() {
+        recoverPasswordButton.addTarget(self, action: #selector(getRecoverPassword), for: .touchUpInside)
+        registrationButton.addTarget(self, action: #selector(getRegistration), for: .touchUpInside)
+        buttonNext.addTarget(self, action: #selector(getNextScreen), for: .touchUpInside)
+    }
+    
+    @objc
+    private func getRecoverPassword() {
+        delegateTransitionScreen?.didTransitionScreen(.recover)
+    }
+    
+    @objc
+    private func getRegistration() {
+        delegateTransitionScreen?.didTransitionScreen(.registration)
+    }
+        
+    @objc private func getNextScreen() {
+        delegateTransitionScreen?.didTransitionScreen(.next)
+    }
+    
+    
+    private func configureWithCombine() {
+        authViewModel.$canSubmit
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] canSubmit in
+                canSubmit ? self?.isCanSubmit() : self?.isNotCanSubmit()
+            }
+            .store(in: &cancellables)
+    }
+        
+    private func observeTextFields() {
+        loginTextField.textField.publisher(for: \.text)
+            .compactMap { $0 }
+            .sink { [weak self] text in
+                self?.authViewModel.email = text             }
+            .store(in: &cancellables)
+        
+        passwordTextField.textField.publisher(for: \.text)
+            .compactMap { $0 }
+            .sink { [weak self] text in
+                self?.authViewModel.password = text
+            }
+            .store(in: &cancellables)
+    }
+    
+    private func isCanSubmit() {
+        self.buttonNext.isEnabled = true
+        self.incorrectLogin.isHidden = true
+        self.incorrectPassword.isHidden = true
+        self.buttonNext.backgroundColor = .button
+    }
+    
+    private func isNotCanSubmit() {
+        self.buttonNext.isEnabled = false
+        self.incorrectLogin.isHidden = false
+        self.incorrectPassword.isHidden = false
+        self.loginTextField.layer.borderColor = .init(red: 255/255, green: 0, blue: 0, alpha: 0.8)
+        self.passwordTextField.layer.borderColor = .init(red: 255/255, green: 0, blue: 0, alpha: 0.8)
+        self.incorrectLogin.text = self.authViewModel.emailPrompt
+        self.incorrectPassword.text = self.authViewModel.passwordPrompt
+    }
 }
+
+  
 

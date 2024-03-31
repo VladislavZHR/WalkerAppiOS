@@ -3,55 +3,61 @@ import Combine
 
 final class AuthViewModel: ObservableObject {
     
-    @Published var email = ""
-    @Published var password = ""
-    @Published var canSubmit = false
+    var emailSubject = CurrentValueSubject<String, Never>("")
+    var passwordSubject = CurrentValueSubject<String, Never>("")
     
-    var emailPrompt: String? {
-        if email.isEmpty || isValidLogin {
-            return nil
-        } else {
-            return "Incorrect e-mail"
-        }
-    }
     
-    var PasswordPrompt: String? {
-        if password.isEmpty || isValidPassword {
-            return nil
-        } else {
-            return "Password must be equal or more 8 symbol"
-        }
-    }
+    @Published var canSubmit = true
     
     @Published private var isValidLogin = false
     @Published private var isValidPassword = false
     
-    private let emailPredicate = NSPredicate(format: "SELF MATCHES %@", Regex.regexLogin)
-    
-    private var cancellable: Set<AnyCancellable> = []
+    private let emailPreicate = NSPredicate(format: "SELF MATCHES %@", Regex.regexLogin)
+    private var cancellables: Set<AnyCancellable> = []
     
     init() {
-        $email
+
+        canAuthPublisher
+            .sink {
+                print(Thread.current)
+                self.canSubmit = $0
+                print(self.canSubmit)
+            }
+            .store(in: &cancellables)
+        emailIsValid
+            .assign(to: \.isValidLogin, on: self)
+            .store(in: &cancellables)
+        passwordIsValid
+            .assign(to: \.isValidPassword, on: self)
+            .store(in: &cancellables)
+    }
+    
+    private var emailIsValid: AnyPublisher<Bool, Never> {
+        emailSubject
             .debounce(for: 0.5, scheduler: RunLoop.main)
             .map { email in
-                return self.emailPredicate.evaluate(with: email)
+                self.emailPreicate.evaluate(with: email)
             }
-            .assign(to: \.isValidLogin, on: self)
-            .store(in: &cancellable)
-        
-        $password
+            .eraseToAnyPublisher()
+    }
+    
+    private var passwordIsValid: AnyPublisher<Bool, Never> {
+        passwordSubject
             .debounce(for: 0.5, scheduler: RunLoop.main)
             .map { password in
-                return password.count >= 8
+                password.count >= 8
             }
-            .assign(to: \.isValidPassword, on: self)
-            .store(in: &cancellable)
-        
-        Publishers.CombineLatest($isValidLogin, $isValidPassword)
-            .map { email, password in
-                return (email && password)
-            }
-            .assign(to: \.canSubmit, on: self)
-            .store(in: &cancellable)
+            .eraseToAnyPublisher()
     }
+    
+    private var canAuthPublisher: AnyPublisher<Bool, Never> {
+        Publishers.CombineLatest(emailIsValid, passwordIsValid)
+            .debounce(for: 0.5, scheduler: RunLoop.main)
+            .map { (email, password) in
+                (email && password)
+            }
+            .eraseToAnyPublisher()
+    }
+        
+    
 }
