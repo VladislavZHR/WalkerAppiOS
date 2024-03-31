@@ -1,8 +1,11 @@
 import UIKit
 import SnapKit
+import Combine
 
 final class RectangleSubViewBaseViewAuth: UIView {
     
+    private var cancellables = Set<AnyCancellable>()
+
     weak var delegateTransitionScreen: TransitionScreen?
     var authViewModel = AuthViewModel()
     
@@ -124,12 +127,8 @@ final class RectangleSubViewBaseViewAuth: UIView {
         
         addConstraints()
         addActionToButton()
-        configureWithCombile()
-        
-        self.loginTextField.checkEmail = { [weak self] in
-            self?.addCheckoutEmailInCorrect()
-        }
-        
+        observeTextFields()
+        configureWithCombine()
     }
     
     private func addConstraints() {
@@ -193,34 +192,7 @@ final class RectangleSubViewBaseViewAuth: UIView {
             $0.width.equalTo(1)
         }
     }
-    
-
-    private func addCheckoutEmailInCorrect() {
-       
-            if let text = self.loginTextField.textField.text {
-                if let correct = self.returnIncorrectEmail(text) {
-                    self.incorrectLogin.isHidden = false
-                    self.buttonNext.backgroundColor = .systemGray
-                    self.buttonNext.isEnabled = false
-                } else {
-                    self.incorrectLogin.isHidden = true
-                    self.buttonNext.backgroundColor = .button
-                    self.buttonNext.isEnabled = true
-                }
-            }
-    }
-    
-    private func returnIncorrectEmail(_ value: String) -> String? {
         
-        let regularExpression = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
-        let predicate = NSPredicate(format: "SELF MATCHES %@", regularExpression)
-        if !predicate.evaluate(with: value) {
-            return "Incorrect"
-        } else {
-            return nil
-        }
-    }
-    
     private func addActionToButton() {
         recoverPasswordButton.addTarget(self, action: #selector(getRecoverPassword), for: .touchUpInside)
         registrationButton.addTarget(self, action: #selector(getRegistration), for: .touchUpInside)
@@ -241,10 +213,32 @@ final class RectangleSubViewBaseViewAuth: UIView {
         delegateTransitionScreen?.didTransitionScreen(.next)
     }
     
-    private func configureWithCombile() {
-        self.buttonNext.isEnabled = !self.authViewModel.canSubmit
-        
+    
+    private func configureWithCombine() {
+        authViewModel.$canSubmit
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] canSubmit in
+                self?.buttonNext.isEnabled = canSubmit
+                self?.incorrectLogin.isHidden = canSubmit
+                self?.buttonNext.backgroundColor = canSubmit ? .button : .systemGray
+            }
+            .store(in: &cancellables)
     }
+    
+    private func observeTextFields() {
+        NotificationCenter.default.publisher(for: UITextField.textDidChangeNotification, object: loginTextField.textField)
+            .merge(with: NotificationCenter.default.publisher(for: UITextField.textDidChangeNotification, object: passwordTextField.textField))
+            .compactMap { $0.object as? UITextField }
+            .sink { [weak self] textField in
+                if textField == self?.loginTextField.textField {
+                    self?.authViewModel.email = textField.text ?? ""
+                } else if textField == self?.passwordTextField.textField {
+                    self?.authViewModel.password = textField.text ?? ""
+                }
+            }
+            .store(in: &cancellables)
+    }
+    
 }
 
   

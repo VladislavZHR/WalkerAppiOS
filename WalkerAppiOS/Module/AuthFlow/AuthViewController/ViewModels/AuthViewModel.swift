@@ -3,25 +3,6 @@ import Combine
 
 final class AuthViewModel: ObservableObject {
     
-//   var statusText = Dynamic("")
-//    var onSucces: (() -> ())?
-//    var onError: (() -> ())?
-//
-//    
-//    func checkEnterData(_ login: String?, _ password: String?) {
-//        
-//        if login != User.user[0].login || password != User.user[0].password || login == nil || password == nil {
-//            statusText.value = "Error"
-//            onError?()
-//            
-//        } else {
-//            onSucces?()
-//
-//        }
-//        
-//    }
-    
-    
     @Published var email = ""
     @Published var password = ""
     @Published var canSubmit = false
@@ -73,5 +54,4 @@ final class AuthViewModel: ObservableObject {
             .assign(to: \.canSubmit, on: self)
             .store(in: &cancellable)
     }
-    
 }
