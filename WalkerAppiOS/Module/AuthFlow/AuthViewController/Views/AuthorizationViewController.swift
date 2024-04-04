@@ -4,6 +4,8 @@ import SnapKit
 final class AuthorizationViewController: UIViewController {
     
     let rectangleOnBaseView = RectangleSubViewBaseViewAuth()
+    
+    var authViewModel = AuthViewModel()
 
     private let baseViewImagePetApp: UIImageView = {
         let baseViewImagePetApp = UIImageView()
@@ -20,6 +22,7 @@ final class AuthorizationViewController: UIViewController {
     }()
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         configure()
     }
@@ -59,7 +62,7 @@ final class AuthorizationViewController: UIViewController {
     }
     
     func addAnimateForRectangleOnBaseView() {
-
+        
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             self.rectangleOnBaseView.snp.makeConstraints {
                 $0.top.equalTo(self.view.snp.top).offset(460)
@@ -67,8 +70,6 @@ final class AuthorizationViewController: UIViewController {
             }
             UIView.animate(withDuration: 0.8) {
                 self.view.layoutIfNeeded()
-            } completion: { _ in
-                
             }
         }
     }
@@ -130,4 +131,5 @@ extension AuthorizationViewController {
     }
 }
       
+
 

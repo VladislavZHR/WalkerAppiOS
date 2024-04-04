@@ -35,6 +35,7 @@
 		B25792012BB34223005F628D /* Dynamic.swift in Sources */ = {isa = PBXBuildFile; fileRef = B25792002BB34223005F628D /* Dynamic.swift */; };
 		B28A15842BA8DC23008B15A9 /* RecoverPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B28A15832BA8DC23008B15A9 /* RecoverPasswordViewController.swift */; };
 		B28A15862BA8DC61008B15A9 /* RecoverPasswordAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = B28A15852BA8DC61008B15A9 /* RecoverPasswordAssembly.swift */; };
+		B2C8DB0B2BBB303D0093B197 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C8DB0A2BBB303D0093B197 /* Extensions.swift */; };
 		B2EEC1062BA4C9E500F8849B /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = B2EEC1052BA4C9E500F8849B /* SnapKit */; };
 		B2EEC1142BA4CE4200F8849B /* SFUIText-HeavyItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B2EEC1082BA4CE4100F8849B /* SFUIText-HeavyItalic.ttf */; };
 		B2EEC1162BA4CE4200F8849B /* SFUIText-Bold_0.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B2EEC10A2BA4CE4100F8849B /* SFUIText-Bold_0.ttf */; };
@@ -78,6 +79,7 @@
 		B25792002BB34223005F628D /* Dynamic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dynamic.swift; sourceTree = "<group>"; };
 		B28A15832BA8DC23008B15A9 /* RecoverPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoverPasswordViewController.swift; sourceTree = "<group>"; };
 		B28A15852BA8DC61008B15A9 /* RecoverPasswordAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoverPasswordAssembly.swift; sourceTree = "<group>"; };
+		B2C8DB0A2BBB303D0093B197 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		B2EEC1082BA4CE4100F8849B /* SFUIText-HeavyItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SFUIText-HeavyItalic.ttf"; path = "../../../../../Downloads/San Francisco UI Text/SFUIText-HeavyItalic.ttf"; sourceTree = "<group>"; };
 		B2EEC10A2BA4CE4100F8849B /* SFUIText-Bold_0.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SFUIText-Bold_0.ttf"; path = "../../../../../Downloads/San Francisco UI Text/SFUIText-Bold_0.ttf"; sourceTree = "<group>"; };
 		B2EEC10C2BA4CE4100F8849B /* SFUIText-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SFUIText-BoldItalic.ttf"; path = "../../../../../Downloads/San Francisco UI Text/SFUIText-BoldItalic.ttf"; sourceTree = "<group>"; };
@@ -221,6 +223,7 @@
 			isa = PBXGroup;
 			children = (
 				B22783E02BA38A3200F45C17 /* Constants.swift */,
+				B2C8DB0A2BBB303D0093B197 /* Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -392,6 +395,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B2085B332BB60318002B12DE /* CustomTextField.swift in Sources */,
+				B2C8DB0B2BBB303D0093B197 /* Extensions.swift in Sources */,
 				B22783DE2BA38A1200F45C17 /* UserDefaultsRepository.swift in Sources */,
 				B28A15862BA8DC61008B15A9 /* RecoverPasswordAssembly.swift in Sources */,
 				B22783CF2BA3895000F45C17 /* MainViewController.swift in Sources */,
