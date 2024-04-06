@@ -113,7 +113,7 @@ final class AuthorizationViewController: UIViewController {
         addActionToButton()
         getEnabledForButton()
         addTargetForNextButton()
-        addButtonSecure()
+        resetSettingsForDelete()
     }
     
     private func addAnimateForRectangleOnBaseView() {
@@ -153,6 +153,8 @@ private extension AuthorizationViewController {
     
     @objc 
     func keyboardHide(_ notification: Notification) {
+        
+        
         
         UIView.animate(withDuration: 0.1) {
             self.rectangleOnBaseView.transform = .identity
@@ -208,8 +210,12 @@ private extension AuthorizationViewController {
     @objc 
     func hideRectangle() {
         
+        self.loginTextField.textField.resignFirstResponder()
+        self.passwordTextField.textField.resignFirstResponder()
+        self.passwordTextField.deleteSecure()
         self.makeConsttraints()
         self.resetTextField()
+        self.resetSeetingsForCombine()
 
         UIView.animate(withDuration: 0.8) {
             self.view.layoutIfNeeded()
@@ -476,32 +482,34 @@ private extension AuthorizationViewController {
         self.passwordTextField.placeholder.font = UIFont(name: "SFUIText-Medium", size: 16)
         
     }
+    
+    func resetSeetingsForCombine() {
+        self.loginTextField.textField.textColor = .textFieldColorForText
+        self.passwordTextField.textField.textColor = .textFieldColorForText
+        self.loginTextField.layer.borderColor = UIColor.textFieldBorderFor.cgColor
+        self.passwordTextField.layer.borderColor = UIColor.textFieldBorderFor.cgColor
+        self.passwordTextField.placeholder.textColor = .textColorPlaceholder
+        self.loginTextField.placeholder.textColor = .textColorPlaceholder
+    }
+    
+    func resetSettingsForDelete() {
+        
+//        if loginTextField.resettSettingsForCombine {
+//            self.loginTextField.textField.textColor = .textFieldColorForText
+//            self.loginTextField.layer.borderColor = UIColor.textFieldBorderFor.cgColor
+//            self.loginTextField.placeholder.textColor = .textColorPlaceholder
+//        }
+//        
+//        if passwordTextField.resettSettingsForCombine {
+//            self.passwordTextField.textField.textColor = .textFieldColorForText
+//            self.passwordTextField.layer.borderColor = UIColor.textFieldBorderFor.cgColor
+//            self.passwordTextField.placeholder.textColor = .textColorPlaceholder
+//        }
+        
+    }
+    
 }
 
-private extension AuthorizationViewController {
-    func addButtonSecure() {
-//        let contentView = UIView()
-//        let imageIcon = UIImageView(image: UIImage(named: "closeEye"))
-//        
-//        contentView.addSubview(imageIcon)
-//        passwordTextField.addSubview(contentView)
-//        
-//        contentView.snp.makeConstraints {
-//            $0.centerY.equalTo(passwordTextField) // Центрируем contentView по вертикали
-//            $0.right.equalTo(passwordTextField.snp.right) // Размещаем contentView справа от textField
-//            $0.width.height.equalTo(25) // Устанавливаем высоту и ширину contentView равными 25
-//        }
-//        
-//        imageIcon.snp.makeConstraints {
-//            $0.edges.equalToSuperview()
-//        }
-//        
-//        contentView.contentMode = .scaleAspectFit
-//        
-//        passwordTextField.textField.rightView = contentView
-//        passwordTextField.textField.rightViewMode = .always
-    }
-}
 
     
 

@@ -39,7 +39,14 @@ extension CustomTextField {
     
     @objc
     private func changeSecure() {
-        print(111)
+        self.textField.isSecureTextEntry.toggle()
+        
+        if textField.isSecureTextEntry {
+            self.imageIcon.image = UIImage(named: "closeEye")
+        } else {
+            self.imageIcon.image = UIImage(named: "eye")
+
+        }
     }
     
 }

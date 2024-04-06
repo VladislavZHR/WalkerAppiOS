@@ -4,6 +4,7 @@ import SnapKit
 final class CustomTextField: UIView {
     
     var toggle = false
+//    var resettSettingsForCombine = false
     let contentView = UIView()
     let imageIcon = UIImageView()
     
@@ -132,6 +133,7 @@ extension CustomTextField: UITextFieldDelegate {
             textField.isHidden = true
             placeholder.font = UIFont(name: "SFUIText-Medium", size: 16)
             self.deleteSecure()
+//            self.resettSettingsForCombine = true
             
             
             UIView.animate(withDuration: 0.2) {

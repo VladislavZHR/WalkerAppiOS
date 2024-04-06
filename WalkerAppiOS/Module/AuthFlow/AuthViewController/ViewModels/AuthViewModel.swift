@@ -117,8 +117,8 @@ final class AuthViewModel: ObservableObject {
     var isValidEmail: AnyPublisher<Bool, Never> {
         $email
             .debounce(for: 0.5, scheduler: RunLoop.main)
-            .filter{ !$0.isEmpty}
-            .map { $0.isValidateEmailPredicate()}
+            .filter{ !$0.isEmpty }
+            .map { !$0.isEmpty && $0.isValidateEmailPredicate()}
             .eraseToAnyPublisher()
     }
     
@@ -126,7 +126,7 @@ final class AuthViewModel: ObservableObject {
         $password
             .debounce(for: 0.5, scheduler: RunLoop.main)
             .filter{ !$0.isEmpty }
-            .map { $0.count >= 8 }
+            .map { !$0.isEmpty && $0.count >= 8}
             .eraseToAnyPublisher()
     }
     
