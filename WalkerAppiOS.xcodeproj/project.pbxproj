@@ -7,9 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A0E131B885E58C927192427F /* Pods_WalkerAppiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F21A12EAAF1967D75F2816D1 /* Pods_WalkerAppiOS.framework */; };
 		B2004DF62BB7482100C4ECC4 /* AuthorizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2004DF52BB7482100C4ECC4 /* AuthorizationViewController.swift */; };
 		B2004DF82BB74C7F00C4ECC4 /* RectangleSubViewBaseViewAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2004DF72BB74C7F00C4ECC4 /* RectangleSubViewBaseViewAuth.swift */; };
 		B2085B332BB60318002B12DE /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2085B322BB60318002B12DE /* CustomTextField.swift */; };
+		B2201C1F2BC1F8C90027652C /* loaderView.json in Resources */ = {isa = PBXBuildFile; fileRef = B2201C1E2BC1F8C90027652C /* loaderView.json */; };
+		B2201C232BC1FC050027652C /* workDevelopment.json in Resources */ = {isa = PBXBuildFile; fileRef = B2201C222BC1FC050027652C /* workDevelopment.json */; };
 		B22783AE2BA3877D00F45C17 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22783AD2BA3877D00F45C17 /* AppDelegate.swift */; };
 		B22783B02BA3877D00F45C17 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22783AF2BA3877D00F45C17 /* SceneDelegate.swift */; };
 		B22783B72BA3878300F45C17 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B22783B62BA3878300F45C17 /* Assets.xcassets */; };
@@ -50,9 +53,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		30660B4369837708DE32EAE5 /* Pods-WalkerAppiOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalkerAppiOS.release.xcconfig"; path = "Target Support Files/Pods-WalkerAppiOS/Pods-WalkerAppiOS.release.xcconfig"; sourceTree = "<group>"; };
+		669F5F836CEF98B3AD247029 /* Pods-WalkerAppiOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WalkerAppiOS.debug.xcconfig"; path = "Target Support Files/Pods-WalkerAppiOS/Pods-WalkerAppiOS.debug.xcconfig"; sourceTree = "<group>"; };
 		B2004DF52BB7482100C4ECC4 /* AuthorizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationViewController.swift; sourceTree = "<group>"; };
 		B2004DF72BB74C7F00C4ECC4 /* RectangleSubViewBaseViewAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RectangleSubViewBaseViewAuth.swift; sourceTree = "<group>"; };
 		B2085B322BB60318002B12DE /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		B2201C1E2BC1F8C90027652C /* loaderView.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = loaderView.json; path = ../../../../../Downloads/loaderView.json; sourceTree = "<group>"; };
+		B2201C222BC1FC050027652C /* workDevelopment.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = workDevelopment.json; path = ../../../../../Downloads/workDevelopment.json; sourceTree = "<group>"; };
 		B22783AA2BA3877C00F45C17 /* WalkerAppiOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WalkerAppiOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B22783AD2BA3877D00F45C17 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B22783AF2BA3877D00F45C17 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -91,6 +98,7 @@
 		B2EEC1102BA4CE4100F8849B /* SFUIText-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SFUIText-Light.ttf"; path = "../../../../../Downloads/San Francisco UI Text/SFUIText-Light.ttf"; sourceTree = "<group>"; };
 		B2EEC1122BA4CE4100F8849B /* SFUIText-RegularItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SFUIText-RegularItalic.ttf"; path = "../../../../../Downloads/San Francisco UI Text/SFUIText-RegularItalic.ttf"; sourceTree = "<group>"; };
 		B2EEC1132BA4CE4200F8849B /* SFUIText-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SFUIText-Semibold.ttf"; path = "../../../../../Downloads/San Francisco UI Text/SFUIText-Semibold.ttf"; sourceTree = "<group>"; };
+		F21A12EAAF1967D75F2816D1 /* Pods_WalkerAppiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WalkerAppiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,12 +107,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				B2EEC1062BA4C9E500F8849B /* SnapKit in Frameworks */,
+				A0E131B885E58C927192427F /* Pods_WalkerAppiOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6B6A69F6D8D1F6E2DDF09E76 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				669F5F836CEF98B3AD247029 /* Pods-WalkerAppiOS.debug.xcconfig */,
+				30660B4369837708DE32EAE5 /* Pods-WalkerAppiOS.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		B2085B312BB6026C002B12DE /* CustomElements */ = {
 			isa = PBXGroup;
 			children = (
@@ -114,11 +132,22 @@
 			path = CustomElements;
 			sourceTree = "<group>";
 		};
+		B2201C1B2BC1EA1F0027652C /* AnimationLottie */ = {
+			isa = PBXGroup;
+			children = (
+				B2201C222BC1FC050027652C /* workDevelopment.json */,
+				B2201C1E2BC1F8C90027652C /* loaderView.json */,
+			);
+			path = AnimationLottie;
+			sourceTree = "<group>";
+		};
 		B22783A12BA3877C00F45C17 = {
 			isa = PBXGroup;
 			children = (
 				B22783AC2BA3877C00F45C17 /* WalkerAppiOS */,
 				B22783AB2BA3877C00F45C17 /* Products */,
+				6B6A69F6D8D1F6E2DDF09E76 /* Pods */,
+				E6072CB84F974F592E770EE8 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -133,6 +162,7 @@
 		B22783AC2BA3877C00F45C17 /* WalkerAppiOS */ = {
 			isa = PBXGroup;
 			children = (
+				B2201C1B2BC1EA1F0027652C /* AnimationLottie */,
 				B2085B312BB6026C002B12DE /* CustomElements */,
 				B2EEC1072BA4CDBA00F8849B /* Fonts */,
 				B22783DF2BA38A2400F45C17 /* Extensions */,
@@ -312,6 +342,14 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		E6072CB84F974F592E770EE8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F21A12EAAF1967D75F2816D1 /* Pods_WalkerAppiOS.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -319,9 +357,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B22783BE2BA3878300F45C17 /* Build configuration list for PBXNativeTarget "WalkerAppiOS" */;
 			buildPhases = (
+				B1AF3106D6E70B22290BD9E3 /* [CP] Check Pods Manifest.lock */,
 				B22783A62BA3877C00F45C17 /* Sources */,
 				B22783A72BA3877C00F45C17 /* Frameworks */,
 				B22783A82BA3877C00F45C17 /* Resources */,
+				B73EB5392CDA5B4E30632A3C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -379,9 +419,11 @@
 				B2EEC11C2BA4CE4200F8849B /* SFUIText-Light.ttf in Resources */,
 				B2EEC1142BA4CE4200F8849B /* SFUIText-HeavyItalic.ttf in Resources */,
 				B22783BA2BA3878300F45C17 /* LaunchScreen.storyboard in Resources */,
+				B2201C1F2BC1F8C90027652C /* loaderView.json in Resources */,
 				B2EEC1182BA4CE4200F8849B /* SFUIText-BoldItalic.ttf in Resources */,
 				B2EEC1192BA4CE4200F8849B /* SFUIText-LightItalic.ttf in Resources */,
 				B2EEC11F2BA4CE4200F8849B /* SFUIText-Semibold.ttf in Resources */,
+				B2201C232BC1FC050027652C /* workDevelopment.json in Resources */,
 				B2EEC11E2BA4CE4200F8849B /* SFUIText-RegularItalic.ttf in Resources */,
 				B2EEC11B2BA4CE4200F8849B /* SFUIText-Heavy.ttf in Resources */,
 				B2EEC11A2BA4CE4200F8849B /* SFUIText-Medium.ttf in Resources */,
@@ -391,6 +433,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		B1AF3106D6E70B22290BD9E3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-WalkerAppiOS-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B73EB5392CDA5B4E30632A3C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-WalkerAppiOS/Pods-WalkerAppiOS-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-WalkerAppiOS/Pods-WalkerAppiOS-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-WalkerAppiOS/Pods-WalkerAppiOS-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		B22783A62BA3877C00F45C17 /* Sources */ = {
@@ -479,7 +563,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -542,7 +626,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -563,6 +647,7 @@
 		};
 		B22783BF2BA3878300F45C17 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 669F5F836CEF98B3AD247029 /* Pods-WalkerAppiOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -596,6 +681,7 @@
 		};
 		B22783C02BA3878300F45C17 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 30660B4369837708DE32EAE5 /* Pods-WalkerAppiOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

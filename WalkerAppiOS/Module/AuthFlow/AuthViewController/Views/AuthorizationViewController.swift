@@ -1,12 +1,15 @@
 import UIKit
 import SnapKit
 import Combine
+import Lottie
 
 final class AuthorizationViewController: UIViewController {
     
     weak var delegateTransitionScreen: TransitionScreen?
     private var authViewModel = AuthViewModel()
     private var cancellables = Set<AnyCancellable>()
+    private let loaderLottie = AnimationView()
+
 
     private let baseViewImagePetApp: UIImageView = {
         let baseViewImagePetApp = UIImageView()
@@ -429,10 +432,11 @@ private extension AuthorizationViewController {
             if self.loginTextField.textField.text == User.user[0].login && self.passwordTextField.textField.text == User.user[0].password {
         
                 self.isCanSubmit()
-                
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                addLoaderView()
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                     self.delegateTransitionScreen?.didTransitionScreen(.next)
                     self.resetTextField()
+                    self.loaderLottie.removeFromSuperview()
 
                 }
             } else {
@@ -509,6 +513,33 @@ private extension AuthorizationViewController {
     }
     
 }
+
+private extension AuthorizationViewController {
+    
+    func addLoaderView() {
+        
+        self.view.addSubview(loaderLottie)
+        
+        loaderLottie.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.centerY.equalToSuperview()
+            $0.height.equalTo(350)
+            $0.width.equalTo(350)
+            
+        }
+        
+        let animation = Animation.named("loaderView")
+        loaderLottie.animation = animation
+        loaderLottie.contentMode = .scaleAspectFit
+        loaderLottie.loopMode = .loop
+        
+        self.loaderLottie.play()
+        
+    }
+    
+}
+    
+
 
 
     
