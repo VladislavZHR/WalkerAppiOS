@@ -50,11 +50,13 @@ final class AuthorizationViewController: UIViewController {
     private let loginTextField: CustomTextField = {
         let loginTextField = CustomTextField(frame: .zero, placeholder: "E-mail")
         
+        
         return loginTextField
     }()
     
     private let passwordTextField: CustomTextField = {
         let passwordTextField = CustomTextField(frame: .zero, placeholder: "Пароль")
+        passwordTextField.toggle = true
         
         return passwordTextField
     }()
@@ -111,6 +113,7 @@ final class AuthorizationViewController: UIViewController {
         addActionToButton()
         getEnabledForButton()
         addTargetForNextButton()
+        addButtonSecure()
     }
     
     private func addAnimateForRectangleOnBaseView() {
@@ -206,6 +209,7 @@ private extension AuthorizationViewController {
     func hideRectangle() {
         
         self.makeConsttraints()
+        self.resetTextField()
 
         UIView.animate(withDuration: 0.8) {
             self.view.layoutIfNeeded()
@@ -406,7 +410,6 @@ private extension AuthorizationViewController {
     }
 }
 
-
 private extension AuthorizationViewController {
     
     func addTargetForNextButton() {
@@ -423,6 +426,8 @@ private extension AuthorizationViewController {
                 
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                     self.delegateTransitionScreen?.didTransitionScreen(.next)
+                    self.resetTextField()
+
                 }
             } else {
                     self.shakeTextField()
@@ -450,3 +455,53 @@ private extension AuthorizationViewController {
         passwordTextField.layer.add(shakePasswordTextField, forKey: "position")
     }
 }
+
+private extension AuthorizationViewController {
+    
+    func resetTextField() {
+        
+        self.loginTextField.textField.text = ""
+        self.passwordTextField.textField.text = ""
+        self.buttonNext.isEnabled = false
+        self.buttonNext.backgroundColor = .systemGray
+        self.loginTextField.textField.textColor = .textFieldColorForText
+        self.passwordTextField.textField.textColor = .textFieldColorForText
+        self.loginTextField.layer.borderColor = UIColor.textFieldBorderFor.cgColor
+        self.passwordTextField.layer.borderColor = UIColor.textFieldBorderFor.cgColor
+        self.passwordTextField.placeholder.textColor = .textColorPlaceholder
+        self.loginTextField.placeholder.textColor = .textColorPlaceholder
+        self.loginTextField.textField.isHidden = true
+        self.passwordTextField.textField.isHidden = true
+        self.loginTextField.placeholder.font = UIFont(name: "SFUIText-Medium", size: 16)
+        self.passwordTextField.placeholder.font = UIFont(name: "SFUIText-Medium", size: 16)
+        
+    }
+}
+
+private extension AuthorizationViewController {
+    func addButtonSecure() {
+//        let contentView = UIView()
+//        let imageIcon = UIImageView(image: UIImage(named: "closeEye"))
+//        
+//        contentView.addSubview(imageIcon)
+//        passwordTextField.addSubview(contentView)
+//        
+//        contentView.snp.makeConstraints {
+//            $0.centerY.equalTo(passwordTextField) // Центрируем contentView по вертикали
+//            $0.right.equalTo(passwordTextField.snp.right) // Размещаем contentView справа от textField
+//            $0.width.height.equalTo(25) // Устанавливаем высоту и ширину contentView равными 25
+//        }
+//        
+//        imageIcon.snp.makeConstraints {
+//            $0.edges.equalToSuperview()
+//        }
+//        
+//        contentView.contentMode = .scaleAspectFit
+//        
+//        passwordTextField.textField.rightView = contentView
+//        passwordTextField.textField.rightViewMode = .always
+    }
+}
+
+    
+

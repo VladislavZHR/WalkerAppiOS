@@ -33,6 +33,7 @@
 		B25791FD2BB34061005F628D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B25791FC2BB34061005F628D /* User.swift */; };
 		B25791FF2BB34112005F628D /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B25791FE2BB34112005F628D /* AuthViewModel.swift */; };
 		B25792012BB34223005F628D /* Dynamic.swift in Sources */ = {isa = PBXBuildFile; fileRef = B25792002BB34223005F628D /* Dynamic.swift */; };
+		B28267E32BC1C00A008B183F /* CustomTextField+SecureTogleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B28267E22BC1C00A008B183F /* CustomTextField+SecureTogleExtension.swift */; };
 		B28A15842BA8DC23008B15A9 /* RecoverPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B28A15832BA8DC23008B15A9 /* RecoverPasswordViewController.swift */; };
 		B28A15862BA8DC61008B15A9 /* RecoverPasswordAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = B28A15852BA8DC61008B15A9 /* RecoverPasswordAssembly.swift */; };
 		B2C8DB0B2BBB303D0093B197 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C8DB0A2BBB303D0093B197 /* Extensions.swift */; };
@@ -77,6 +78,7 @@
 		B25791FC2BB34061005F628D /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		B25791FE2BB34112005F628D /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 		B25792002BB34223005F628D /* Dynamic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dynamic.swift; sourceTree = "<group>"; };
+		B28267E22BC1C00A008B183F /* CustomTextField+SecureTogleExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CustomTextField+SecureTogleExtension.swift"; sourceTree = "<group>"; };
 		B28A15832BA8DC23008B15A9 /* RecoverPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoverPasswordViewController.swift; sourceTree = "<group>"; };
 		B28A15852BA8DC61008B15A9 /* RecoverPasswordAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoverPasswordAssembly.swift; sourceTree = "<group>"; };
 		B2C8DB0A2BBB303D0093B197 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 			isa = PBXGroup;
 			children = (
 				B2085B322BB60318002B12DE /* CustomTextField.swift */,
+				B28267E22BC1C00A008B183F /* CustomTextField+SecureTogleExtension.swift */,
 			);
 			path = CustomElements;
 			sourceTree = "<group>";
@@ -413,6 +416,7 @@
 				B22783C92BA388F300F45C17 /* AuthCoordinator.swift in Sources */,
 				B239AB1F2BAB7B6500DDD29E /* RegistrationViewController.swift in Sources */,
 				B22783D42BA3898F00F45C17 /* AuthViewController.swift in Sources */,
+				B28267E32BC1C00A008B183F /* CustomTextField+SecureTogleExtension.swift in Sources */,
 				B25791FF2BB34112005F628D /* AuthViewModel.swift in Sources */,
 				B2004DF62BB7482100C4ECC4 /* AuthorizationViewController.swift in Sources */,
 				B22783DB2BA389EB00F45C17 /* ModuleContainer.swift in Sources */,

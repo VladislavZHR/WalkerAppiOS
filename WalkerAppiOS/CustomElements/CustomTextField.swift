@@ -3,7 +3,11 @@ import SnapKit
 
 final class CustomTextField: UIView {
     
-    private let stackView: UIStackView = {
+    var toggle = false
+    let contentView = UIView()
+    let imageIcon = UIImageView()
+    
+    let stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
         stackView.layoutMargins = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 0)
@@ -110,10 +114,25 @@ extension CustomTextField: UITextFieldDelegate {
             textField.becomeFirstResponder()
     }
     
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        
+        if self.toggle == true {
+            self.addSecure()
+
+        }
+        
+        if textField.text == "" {
+            self.deleteSecure()
+        }
+    }
+    
+    
     func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
         if (textField.text ?? "").isEmpty {
             textField.isHidden = true
             placeholder.font = UIFont(name: "SFUIText-Medium", size: 16)
+            self.deleteSecure()
+            
             
             UIView.animate(withDuration: 0.2) {
                 self.layoutIfNeeded()
