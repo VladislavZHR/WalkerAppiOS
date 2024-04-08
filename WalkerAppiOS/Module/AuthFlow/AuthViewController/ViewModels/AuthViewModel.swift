@@ -109,7 +109,6 @@ final class AuthViewModel: ObservableObject {
     
     @Published var email = ""
     @Published var password = ""
-    @Published var state = false
     
     
     private var cancellables: Set<AnyCancellable> = []

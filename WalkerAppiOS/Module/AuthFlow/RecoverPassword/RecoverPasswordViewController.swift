@@ -10,22 +10,10 @@ final class RecoverPasswordViewController: UIViewController {
         addConstraintWithSnp()
     }
     
-    private let textField: UITextField = {
-        let textField = UITextField()
-        textField.layer.borderWidth = 1
-        textField.layer.cornerRadius = 10
-        textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: textField.frame.height))
-        textField.leftViewMode = .always
-        textField.placeholder = "E-mail"
-        textField.layer.borderColor = .init(red: 237/255, green: 237/255, blue: 240/255, alpha: 1)
-        textField.textColor = .textColorPlaceholder
-        textField.returnKeyType = .done
-        textField.font = UIFont(name: "SFUIText-Light", size: 16)
-        textField.font = UIFont.systemFont(ofSize: 16, weight: .medium)
-
-
+    private let emailTextField: CustomTextField = {
+        let emailTextfield = CustomTextField(frame: .zero, placeholder: "E-mail")
         
-        return textField
+        return emailTextfield
     }()
     
     private let label: UILabel = {
@@ -47,9 +35,12 @@ final class RecoverPasswordViewController: UIViewController {
         return label
     }()
     
+
+    
     private let button: UIButton = {
-        let button = UIButton()
-        button.layer.cornerRadius = 32
+        let button = UIButton(type: .system)
+        button.layer.cornerRadius = 30
+        button.setTitleColor(.white, for: .normal)
         button.setTitle("Отправить код", for: .normal)
         button.titleLabel?.font = UIFont(name: "SFUIText-Medium", size: 18)
         button.titleLabel?.textAlignment = .center
@@ -59,33 +50,29 @@ final class RecoverPasswordViewController: UIViewController {
     }()
     
     private func addConstraintWithSnp() {
-        self.view.addSubview(textField)
+        self.view.addSubview(emailTextField)
         self.view.addSubview(label)
         self.view.addSubview(button)
         
-        
-        textField.snp.makeConstraints {
+        emailTextField.snp.makeConstraints {
+            $0.top.equalToSuperview().offset(356)
             $0.horizontalEdges.equalToSuperview().inset(20)
-            $0.top.equalToSuperview().inset(356)
             $0.height.equalTo(60)
-            
         }
+        
         
         label.snp.makeConstraints {
             $0.horizontalEdges.equalToSuperview().inset(21)
             $0.top.equalToSuperview().offset(426)
-            //Установить расстояниее между линиями
         }
         
         button.snp.makeConstraints {
-            $0.horizontalEdges.equalToSuperview().inset(101)
+            $0.width.equalTo(212)
             $0.height.equalTo(60)
             $0.top.equalTo(label.snp.bottom).offset(20)
-            //исправить угловатость кнопки
-            //GIT
+            $0.centerX.equalToSuperview()
         }
     }
-    
 }
 
 
