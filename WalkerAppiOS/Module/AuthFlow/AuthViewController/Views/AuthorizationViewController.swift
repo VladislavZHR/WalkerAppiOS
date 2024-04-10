@@ -67,7 +67,7 @@ final class AuthorizationViewController: UIViewController {
     private let buttonNext: UIButton = {
         let buttonNext = UIButton(type: .system)
         buttonNext.backgroundColor = .systemGray
-        buttonNext.layer.cornerRadius = 32
+        buttonNext.layer.cornerRadius = 30
         buttonNext.setTitle("Далее", for: .normal)
         buttonNext.setTitleColor(.white, for: .normal)
         buttonNext.titleLabel?.font = UIFont(name: "SFUIText-Medium", size: 18)
@@ -370,6 +370,8 @@ private extension AuthorizationViewController {
     
     func getEnabledForButton() {
         
+        
+        
         NotificationCenter.default
             .publisher(for: UITextField.textDidChangeNotification, object: loginTextField.textField)
             .map { ($0.object as? UITextField)?.text ?? "" }
@@ -383,8 +385,17 @@ private extension AuthorizationViewController {
             .assign(to: \.password, on: authViewModel)
             .store(in: &cancellables)
 
+//        authViewModel.isLoginEnabled
+//            .debounce(for: 0.5, scheduler: RunLoop.main)
+//            .receive(on: RunLoop.main)
+//            .sink { [weak self] isEnabled in
+//                self?.buttonNext.isEnabled = isEnabled
+//
+//                isEnabled ? self?.isCanSubmit() : self?.isNotCanSubmit()
+//            }
+//            .store(in: &cancellables)
+        
         authViewModel.isLoginEnabled
-            .debounce(for: 0.5, scheduler: RunLoop.main)
             .receive(on: RunLoop.main)
             .sink { [weak self] isEnabled in
                 self?.buttonNext.isEnabled = isEnabled
@@ -392,6 +403,7 @@ private extension AuthorizationViewController {
                 isEnabled ? self?.isCanSubmit() : self?.isNotCanSubmit()
             }
             .store(in: &cancellables)
+
     }
 
     func isCanSubmit() {
@@ -431,7 +443,7 @@ private extension AuthorizationViewController {
         
             if self.loginTextField.textField.text == User.user[0].login && self.passwordTextField.textField.text == User.user[0].password {
         
-                self.isCanSubmit()
+//                self.isCanSubmit()
                 addLoaderView()
                 DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                     self.delegateTransitionScreen?.didTransitionScreen(.next)
@@ -446,7 +458,7 @@ private extension AuthorizationViewController {
     
     func shakeTextField() {
         
-        self.isNotCanSubmit()
+//        self.isNotCanSubmit()
         
         let shakeLoginTextField = CABasicAnimation(keyPath: "position")
         shakeLoginTextField.duration = 0.05

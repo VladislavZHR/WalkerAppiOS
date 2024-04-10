@@ -1,5 +1,6 @@
 import UIKit
 import SnapKit
+import Combine
 
 final class CustomTextField: UIView {
     
@@ -7,6 +8,8 @@ final class CustomTextField: UIView {
 //    var resettSettingsForCombine = false
     let contentView = UIView()
     let imageIcon = UIImageView()
+//    var customTTextFieldViewModel = CustomTextFieldViewModel()
+  
     
     let stackView: UIStackView = {
         let stackView = UIStackView()

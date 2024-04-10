@@ -20,11 +20,12 @@ final class RegistrationViewController: UIViewController {
         self.view.backgroundColor = .systemGray
         title = "Регистрация"
         addDev()
-        
         addAnimateAndSnp()
+
     }
     
     func addAnimateAndSnp() {
+        
         
         self.view.addSubview(lottie)
         self.view.addSubview(label)
@@ -54,4 +55,9 @@ final class RegistrationViewController: UIViewController {
     }
 }
 
+private extension RegistrationViewController {
+    
+    
 
+    
+}
