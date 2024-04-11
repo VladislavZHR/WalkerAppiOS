@@ -176,13 +176,15 @@ private extension AuthorizationViewController {
     
     @objc
     func getRecoverPassword() {
-        
+        self.resetTextField()
+        self.passwordTextField.deleteSecure()
         delegateTransitionScreen?.didTransitionScreen(.recover)
     }
     
     @objc
     func getRegistration() {
-        
+        self.resetTextField()
+        self.passwordTextField.deleteSecure()
         delegateTransitionScreen?.didTransitionScreen(.registration)
     }
 }

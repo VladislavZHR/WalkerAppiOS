@@ -5,21 +5,26 @@ final class RecoverPasswordViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .colorRecoverPassword
-        title = "Напомнить пароль"
+        self.view.backgroundColor = .colorBaseBackround
         
         addConstraintWithSnp()
-        configureNavigationBar()
+        self.navigationController?.navigationBar.isHidden = true
+        configure()
         
     }
     
+    private let customNavigationBar: StandartCustomNavigationBar = {
+        let customNavigationBar = StandartCustomNavigationBar(title: "Напомнить пароль")
+        
+        return customNavigationBar
+    }()
     
     private let emailTextField: CustomTextField = {
         let emailTextfield = CustomTextField(frame: .zero, placeholder: "E-mail")
         
         return emailTextfield
     }()
-    
+
     private let label: UILabel = {
         let label = UILabel()
         label.text = "Пожалуйста, укажите e-mail, который вы использовали для входа в Petapp для того, чтобы мы напомнили ваш пароль."
@@ -35,11 +40,8 @@ final class RecoverPasswordViewController: UIViewController {
         label.attributedText = attributed
         label.font = UIFont.systemFont(ofSize: 12, weight: .medium)
         
-        
         return label
     }()
-    
-
     
     private let button: UIButton = {
         let button = UIButton(type: .system)
@@ -52,42 +54,6 @@ final class RecoverPasswordViewController: UIViewController {
         
         return button
     }()
-    
-    let custom = CustomNavigationBarForRecoverVC(frame: .zero)
-    
-    private let customButton: UIButton = {
-        let customButton = UIButton(type: .custom)
-        customButton.backgroundColor = .clear
-        customButton.layer.borderWidth = 2
-        customButton.layer.borderColor = CGColor(red: 117/255, green: 127/255, blue: 140/255, alpha: 0.07)
-        customButton.frame = .init(x: 20, y: 62, width: 34, height: 34)
-        customButton.layer.cornerRadius = customButton.frame.width/2
-        
-        let arrowLayer = CAShapeLayer()
-         let arrowPath = UIBezierPath()
-         let startPoint = CGPoint(x: 14.17, y: 17.19)
-         arrowPath.move(to: startPoint)
-         arrowPath.addLine(to: CGPoint(x: startPoint.x + 6.94, y: startPoint.y))
-         arrowPath.move(to: startPoint)
-         arrowPath.addLine(to: CGPoint(x: startPoint.x + 6.94 / 2, y: startPoint.y + 6.94 / 2))
-         arrowLayer.path = arrowPath.cgPath
-         arrowLayer.fillColor = UIColor.clear.cgColor
-         arrowLayer.strokeColor = UIColor.green.cgColor // Цвет стрелки
-         arrowLayer.lineWidth = 2 // Толщина линии стрелки
-         
-         customButton.layer.addSublayer(arrowLayer)
-        
-        
-        return customButton
-    }()
-    
-    private let subViewForBackButton: UIBezierPath = {
-        
-        let subViewForBackButtton = UIBezierPath()
-        
-        return subViewForBackButtton
-    }()
-    
 
     @objc
     func dropRecoverViewController() {
@@ -99,15 +65,20 @@ final class RecoverPasswordViewController: UIViewController {
         self.view.addSubview(emailTextField)
         self.view.addSubview(label)
         self.view.addSubview(button)
+        self.view.addSubview(customNavigationBar)
         
+        customNavigationBar.snp.makeConstraints {
+            $0.top.equalToSuperview()
+            $0.horizontalEdges.equalToSuperview()
+            $0.height.equalTo(120)
+        }
         
         emailTextField.snp.makeConstraints {
             $0.top.equalToSuperview().offset(356)
             $0.horizontalEdges.equalToSuperview().inset(20)
             $0.height.equalTo(60)
         }
-        
-        
+
         label.snp.makeConstraints {
             $0.horizontalEdges.equalToSuperview().inset(21)
             $0.top.equalToSuperview().offset(426)
@@ -119,21 +90,18 @@ final class RecoverPasswordViewController: UIViewController {
             $0.top.equalTo(label.snp.bottom).offset(20)
             $0.centerX.equalToSuperview()
         }
-        
-
-        
-        
     }
 }
 
 private extension RecoverPasswordViewController {
-    
-    func configureNavigationBar() {
 
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: customButton)
-        customButton.addTarget(self, action: #selector(dropRecoverViewController), for: .touchUpInside)
-        self.navigationController?.navigationBar.tintColor = .green
-        self.navigationController?.navigationBar.barTintColor = .red
+    func configure() {
         
+        self.customNavigationBar.customButton.addTarget(self, action: #selector(returnForBaseVC), for: .touchUpInside)
+    }
+    
+    @objc
+    func returnForBaseVC() {
+        self.navigationController?.popViewController(animated: true)
     }
 }
