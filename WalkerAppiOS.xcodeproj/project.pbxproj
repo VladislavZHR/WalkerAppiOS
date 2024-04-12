@@ -11,6 +11,7 @@
 		B2004DF62BB7482100C4ECC4 /* AuthorizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2004DF52BB7482100C4ECC4 /* AuthorizationViewController.swift */; };
 		B2004DF82BB74C7F00C4ECC4 /* RectangleSubViewBaseViewAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2004DF72BB74C7F00C4ECC4 /* RectangleSubViewBaseViewAuth.swift */; };
 		B2085B332BB60318002B12DE /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2085B322BB60318002B12DE /* CustomTextField.swift */; };
+		B212A1D92BC9CE2200C8B260 /* RegistrationCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B212A1D82BC9CE2200C8B260 /* RegistrationCollectionViewCell.swift */; };
 		B2201C1F2BC1F8C90027652C /* loaderView.json in Resources */ = {isa = PBXBuildFile; fileRef = B2201C1E2BC1F8C90027652C /* loaderView.json */; };
 		B2201C232BC1FC050027652C /* workDevelopment.json in Resources */ = {isa = PBXBuildFile; fileRef = B2201C222BC1FC050027652C /* workDevelopment.json */; };
 		B22783AE2BA3877D00F45C17 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22783AD2BA3877D00F45C17 /* AppDelegate.swift */; };
@@ -38,7 +39,6 @@
 		B25792012BB34223005F628D /* Dynamic.swift in Sources */ = {isa = PBXBuildFile; fileRef = B25792002BB34223005F628D /* Dynamic.swift */; };
 		B276100E2BC86D5A00CDD3E3 /* StandartCustomNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B276100D2BC86D5A00CDD3E3 /* StandartCustomNavigationBar.swift */; };
 		B27610102BC87ADD00CDD3E3 /* CustomNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B276100F2BC87ADD00CDD3E3 /* CustomNavigationBar.swift */; };
-		B27610122BC884B700CDD3E3 /* RegistrationCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27610112BC884B700CDD3E3 /* RegistrationCollectionView.swift */; };
 		B28267E32BC1C00A008B183F /* CustomTextField+SecureTogleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B28267E22BC1C00A008B183F /* CustomTextField+SecureTogleExtension.swift */; };
 		B28A15842BA8DC23008B15A9 /* RecoverPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B28A15832BA8DC23008B15A9 /* RecoverPasswordViewController.swift */; };
 		B28A15862BA8DC61008B15A9 /* RecoverPasswordAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = B28A15852BA8DC61008B15A9 /* RecoverPasswordAssembly.swift */; };
@@ -64,6 +64,7 @@
 		B2004DF52BB7482100C4ECC4 /* AuthorizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationViewController.swift; sourceTree = "<group>"; };
 		B2004DF72BB74C7F00C4ECC4 /* RectangleSubViewBaseViewAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RectangleSubViewBaseViewAuth.swift; sourceTree = "<group>"; };
 		B2085B322BB60318002B12DE /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		B212A1D82BC9CE2200C8B260 /* RegistrationCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationCollectionViewCell.swift; sourceTree = "<group>"; };
 		B2201C1E2BC1F8C90027652C /* loaderView.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = loaderView.json; path = ../../../../../Downloads/loaderView.json; sourceTree = "<group>"; };
 		B2201C222BC1FC050027652C /* workDevelopment.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = workDevelopment.json; path = ../../../../../Downloads/workDevelopment.json; sourceTree = "<group>"; };
 		B22783AA2BA3877C00F45C17 /* WalkerAppiOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WalkerAppiOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -93,7 +94,6 @@
 		B25792002BB34223005F628D /* Dynamic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dynamic.swift; sourceTree = "<group>"; };
 		B276100D2BC86D5A00CDD3E3 /* StandartCustomNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandartCustomNavigationBar.swift; sourceTree = "<group>"; };
 		B276100F2BC87ADD00CDD3E3 /* CustomNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationBar.swift; sourceTree = "<group>"; };
-		B27610112BC884B700CDD3E3 /* RegistrationCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationCollectionView.swift; sourceTree = "<group>"; };
 		B28267E22BC1C00A008B183F /* CustomTextField+SecureTogleExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CustomTextField+SecureTogleExtension.swift"; sourceTree = "<group>"; };
 		B28A15832BA8DC23008B15A9 /* RecoverPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoverPasswordViewController.swift; sourceTree = "<group>"; };
 		B28A15852BA8DC61008B15A9 /* RecoverPasswordAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecoverPasswordAssembly.swift; sourceTree = "<group>"; };
@@ -142,6 +142,14 @@
 				B276100B2BC86D2700CDD3E3 /* CustomTextField */,
 			);
 			path = CustomElements;
+			sourceTree = "<group>";
+		};
+		B212A1D72BC9CDE600C8B260 /* RegistrationCollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				B212A1D82BC9CE2200C8B260 /* RegistrationCollectionViewCell.swift */,
+			);
+			path = RegistrationCollectionView;
 			sourceTree = "<group>";
 		};
 		B2201C1B2BC1EA1F0027652C /* AnimationLottie */ = {
@@ -276,9 +284,9 @@
 		B239AB1D2BAB7B4400DDD29E /* Registration */ = {
 			isa = PBXGroup;
 			children = (
+				B212A1D72BC9CDE600C8B260 /* RegistrationCollectionView */,
 				B239AB1E2BAB7B6500DDD29E /* RegistrationViewController.swift */,
 				B239AB202BAB7B7500DDD29E /* RegistrationAssembly.swift */,
-				B27610112BC884B700CDD3E3 /* RegistrationCollectionView.swift */,
 			);
 			path = Registration;
 			sourceTree = "<group>";
@@ -544,8 +552,8 @@
 				B2004DF62BB7482100C4ECC4 /* AuthorizationViewController.swift in Sources */,
 				B22783DB2BA389EB00F45C17 /* ModuleContainer.swift in Sources */,
 				B239AB242BAB7E1E00DDD29E /* NextScreenFromAuthViewController.swift in Sources */,
+				B212A1D92BC9CE2200C8B260 /* RegistrationCollectionViewCell.swift in Sources */,
 				B22783E12BA38A3200F45C17 /* Constants.swift in Sources */,
-				B27610122BC884B700CDD3E3 /* RegistrationCollectionView.swift in Sources */,
 				B25792012BB34223005F628D /* Dynamic.swift in Sources */,
 				B22783B02BA3877D00F45C17 /* SceneDelegate.swift in Sources */,
 				B22783D62BA389A600F45C17 /* AuthAssembly.swift in Sources */,

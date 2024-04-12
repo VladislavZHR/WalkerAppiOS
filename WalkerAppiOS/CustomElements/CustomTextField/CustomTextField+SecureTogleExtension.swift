@@ -10,7 +10,7 @@ extension CustomTextField {
         
         
         self.textField.isSecureTextEntry = true
-        self.imageIcon.image = UIImage(named: "closeEye")
+        self.imageIcon.image = UIImage(named: "eye")
         
         contentView.addSubview(imageIcon)
         contentView.addGestureRecognizer(tapGesture)
@@ -42,9 +42,9 @@ extension CustomTextField {
         self.textField.isSecureTextEntry.toggle()
         
         if textField.isSecureTextEntry {
-            self.imageIcon.image = UIImage(named: "closeEye")
-        } else {
             self.imageIcon.image = UIImage(named: "eye")
+        } else {
+            self.imageIcon.image = UIImage(named: "closeEye")
 
         }
     }
